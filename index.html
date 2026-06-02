@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HANEDA OPS · Road to #1 — July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0c1733; --navy2:#15224d; --navy3:#1d2e63;
+  --brand:#1a2061;
+  --orange:#ED7611; --orange-d:#cf6206; --orange-l:#ff9a3d;
+  --amber:#F4B41A;
+  --sky:#2f86c9; --sky-d:#1f6aa6;
+  --paper:#F4EEE1; --paper2:#FBF7EE; --card:#FFFFFF;
+  --ink:#13213f; --ink2:#2c3a5b; --muted:#6b748c;
+  --line:#e6dfcd; --line2:#d9d0bb;
+  --good:#1f9d6b; --good-d:#157a52; --bad:#cf4a5e;
+  --shadow:0 10px 30px -12px rgba(12,23,51,.30);
+  --shadow-sm:0 4px 14px -8px rgba(12,23,51,.35);
+  --r:16px;
+  --disp:'Big Shoulders Display',Impact,sans-serif;
+  --body:'Manrope',ui-sans-serif,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--body); color:var(--ink); line-height:1.5;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(237,118,17,.07), transparent 40%),
+    radial-gradient(circle at 88% 0%, rgba(47,134,201,.08), transparent 38%),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(19,33,63,.025) 27px 28px),
+    var(--paper);
+  background-attachment:fixed;
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;display:block}
+button{font-family:var(--body);cursor:pointer;border:none;background:none}
+input{font-family:var(--body)}
+::selection{background:var(--orange);color:#fff}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px 90px}
+
+/* ---------- topbar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:linear-gradient(180deg,rgba(244,238,225,.96),rgba(244,238,225,.88));
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo-plate{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:9px 14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;
+}
+.logo-plate img{height:22px;width:auto}
+.top-tag{display:flex;flex-direction:column;line-height:1.05}
+.top-tag b{font-family:var(--disp);font-weight:800;letter-spacing:.06em;font-size:15px;color:var(--ink)}
+.top-tag span{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.14em}
+.top-spacer{flex:1}
+.jst{font-family:var(--mono);font-size:12px;color:var(--ink2);display:flex;align-items:center;gap:7px}
+.jst .dot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 rgba(31,157,107,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,157,107,.45)}70%{box-shadow:0 0 0 7px rgba(31,157,107,0)}100%{box-shadow:0 0 0 0 rgba(31,157,107,0)}}
+.btn-reset{font-size:12px;color:var(--muted);border:1px solid var(--line2);border-radius:9px;padding:7px 11px;background:var(--card);transition:.15s}
+.btn-reset:hover{color:var(--bad);border-color:var(--bad)}
+
+/* ---------- tabs ---------- */
+.tabs{position:sticky;top:53px;z-index:35;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs-in{max-width:1080px;margin:0 auto;padding:0 8px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs-in::-webkit-scrollbar{display:none}
+.tab{
+  white-space:nowrap;padding:13px 15px;font-weight:700;font-size:13.5px;color:var(--muted);
+  border-bottom:3px solid transparent;transition:.18s;display:flex;align-items:center;gap:7px;letter-spacing:.01em;
+}
+.tab .ico{font-size:15px}
+.tab:hover{color:var(--ink2)}
+.tab.active{color:var(--orange-d);border-bottom-color:var(--orange)}
+
+/* ---------- sections / cards ---------- */
+.view{display:none;animation:fade .35s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.section-pad{padding-top:22px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.card-pad{padding:18px 18px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--orange-d);text-transform:uppercase;font-weight:700;margin-bottom:6px}
+h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
+.h-xl{font-size:clamp(26px,5.5vw,40px);font-weight:800;line-height:.98}
+.h-lg{font-size:24px;font-weight:800}
+.h-md{font-size:18px;font-weight:700}
+.lead{color:var(--ink2);font-size:14.5px}
+.muted{color:var(--muted)}
+
+/* ---------- departure board (dashboard hero) ---------- */
+.board{
+  background:
+    linear-gradient(180deg, var(--navy2), var(--navy));
+  border-radius:var(--r);box-shadow:var(--shadow);color:#fff;overflow:hidden;position:relative;
+  border:1px solid #25356e;
+}
+.board:before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 38px,rgba(255,255,255,.03) 38px 39px);pointer-events:none}
+.board-top{padding:18px 20px 4px;display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.board-top .eyebrow{color:var(--amber)}
+.board-top h2{color:#fff}
+.dir-edit{
+  margin-left:auto;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:6px 10px;
+}
+.dir-edit label{font-family:var(--mono);font-size:10px;color:#9fb0e0;letter-spacing:.12em}
+.dir-edit input{background:transparent;border:none;color:#fff;font-weight:700;font-size:14px;width:170px;outline:none}
+.dir-edit input::placeholder{color:#7b89b8}
+.board-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);margin:14px 0 0}
+.stat{background:linear-gradient(180deg,#101d42,#0b1631);padding:14px 14px 16px;text-align:center}
+.stat .k{font-family:var(--mono);font-size:10px;color:#8fa0d0;letter-spacing:.14em;margin-bottom:7px}
+.flap{display:inline-block;font-family:var(--mono);font-weight:800;font-size:30px;color:var(--amber);
+  background:#06101f;border:1px solid #243668;border-radius:7px;padding:5px 9px;min-width:44px;line-height:1;
+  box-shadow:inset 0 -8px 14px -8px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06);}
+.flap.small{font-size:22px}
+.stat .sub{font-family:var(--mono);font-size:10px;color:#8fa0d0;margin-top:8px;letter-spacing:.06em}
+/* runway */
+.runway-wrap{padding:16px 20px 20px}
+.runway-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:#9fb0e0;letter-spacing:.1em;margin-bottom:8px}
+.runway{position:relative;height:30px;border-radius:8px;background:#0a1530;border:1px solid #233566;overflow:hidden}
+.runway:before{content:"";position:absolute;top:50%;left:8px;right:8px;height:0;border-top:2px dashed rgba(244,180,26,.55);transform:translateY(-50%)}
+.runway-fill{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,rgba(237,118,17,.18),rgba(237,118,17,.32));border-right:2px solid var(--orange);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.plane{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:18px;transition:left .6s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+
+/* mission/brief */
+.grid-2{display:grid;grid-template-columns:1.3fr .9fr;gap:16px;margin-top:16px}
+@media(max-width:760px){.grid-2{grid-template-columns:1fr}.board-stats{grid-template-columns:repeat(2,1fr)}}
+.brief{border-left:4px solid var(--orange)}
+.brief p{margin:8px 0 0;color:var(--ink2);font-size:14px}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.minical{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.mc{width:23px;height:23px;border-radius:6px;border:1px solid var(--line);background:var(--paper2);
+  font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700}
+.mc.has{border-color:var(--sky);color:var(--sky-d)}
+.mc.log16{background:var(--good);border-color:var(--good-d);color:#fff}
+.mc.log8{background:#5db98c;border-color:#3f9e72;color:#fff}
+.mc.log4{background:var(--amber);border-color:#d49a06;color:#3a2c00}
+.mc.log0{background:#cdb9a0;border-color:#b39c80;color:#4a3a25}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:14px;
+  border-radius:11px;padding:11px 17px;transition:.16s;border:1px solid transparent;letter-spacing:.01em}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(180deg,var(--orange-l),var(--orange));color:#fff;box-shadow:0 8px 18px -10px rgba(237,118,17,.9)}
+.btn-primary:hover{background:linear-gradient(180deg,var(--orange),var(--orange-d));box-shadow:0 10px 22px -10px rgba(237,118,17,1)}
+.btn-navy{background:var(--navy2);color:#fff}
+.btn-navy:hover{background:var(--navy3)}
+.btn-ghost{background:var(--paper2);color:var(--ink2);border-color:var(--line2)}
+.btn-ghost:hover{border-color:var(--ink2);color:var(--ink)}
+.btn-sm{padding:8px 12px;font-size:13px;border-radius:9px}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ---------- daily ops ---------- */
+.daystrip{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:7px;margin-top:14px}
+.daychip{position:relative;background:var(--paper2);border:1px solid var(--line);border-radius:11px;padding:8px 4px 9px;text-align:center;transition:.14s;overflow:hidden}
+.daychip:hover{border-color:var(--sky);transform:translateY(-2px)}
+.daychip.sel{border-color:var(--orange);box-shadow:0 0 0 3px rgba(237,118,17,.16)}
+.daychip .dow{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.daychip .dnum{font-family:var(--disp);font-weight:800;font-size:19px;color:var(--ink);line-height:1.05}
+.daychip .badge{font-family:var(--mono);font-size:9px;font-weight:700;margin-top:2px;color:var(--sky-d)}
+.daychip.logged .dnum{color:#fff}
+.daychip.l16{background:var(--good);border-color:var(--good-d)}
+.daychip.l16 .dow,.daychip.l16 .badge{color:#dff5ea}
+.daychip.l8{background:#5db98c;border-color:#3f9e72}
+.daychip.l8 .dow,.daychip.l8 .badge{color:#eafaf2}
+.daychip.l4{background:var(--amber);border-color:#d49a06}
+.daychip.l4 .dnum{color:#3a2c00}.daychip.l4 .dow,.daychip.l4 .badge{color:#5b4500}
+.daychip.l0{background:#cdb9a0;border-color:#b39c80}
+.daychip.l0 .dnum{color:#3f3220}.daychip.l0 .dow,.daychip.l0 .badge{color:#5a4a33}
+
+.day-panel{margin-top:18px}
+.day-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px dashed var(--line2);padding-bottom:14px}
+.day-head .big{font-family:var(--disp);font-weight:800;font-size:26px}
+.result-chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:12px;
+  padding:6px 11px;border-radius:999px;letter-spacing:.05em}
+.rc16{background:#e2f6ec;color:var(--good-d);border:1px solid #b7e6cd}
+.rc8{background:#eaf7f0;color:#2f8c63;border:1px solid #c6ead8}
+.rc4{background:#fdf3d6;color:#946b00;border:1px solid #f1dd9c}
+.rc0{background:#efe6da;color:#7a6244;border:1px solid #ddccb4}
+
+.tasklist{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.task{display:grid;grid-template-columns:auto 136px 1fr auto;gap:10px;align-items:center;
+  background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:9px 11px;transition:.14s}
+.task:hover{border-color:var(--line2)}
+.task.done{background:#eef7f1;border-color:#cdebda}
+.task.done .t-text{text-decoration:line-through;color:var(--muted)}
+.check{width:26px;height:26px;border-radius:8px;border:2px solid var(--line2);background:#fff;display:flex;align-items:center;justify-content:center;transition:.14s;flex:none}
+.check:hover{border-color:var(--good)}
+.task.done .check{background:var(--good);border-color:var(--good-d);color:#fff}
+.check svg{width:15px;height:15px;opacity:0;transition:.14s}
+.task.done .check svg{opacity:1}
+.t-range{display:flex;align-items:center;gap:3px}
+.t-dash{font-family:var(--mono);color:var(--muted);font-weight:700;flex:none}
+.t-time{font-family:var(--mono);font-weight:700;font-size:12.5px;border:1px solid var(--line2);border-radius:8px;padding:7px 2px;background:#fff;color:var(--ink);width:100%;min-width:0;text-align:center;letter-spacing:.02em}
+.t-time::placeholder{color:#bcae97;font-weight:600}
+.t-time:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(47,134,201,.14)}
+.t-text{border:1px solid transparent;background:transparent;font-size:14.5px;font-weight:500;color:var(--ink);padding:6px 6px;border-radius:8px;width:100%}
+.t-text:focus{outline:none;border-color:var(--sky);background:#fff;box-shadow:0 0 0 3px rgba(47,134,201,.12)}
+.t-del{flex:none;width:30px;height:30px;border-radius:8px;color:var(--muted);font-size:16px;transition:.14s;display:flex;align-items:center;justify-content:center}
+.t-del:hover{background:#fbe9ec;color:var(--bad)}
+@media(max-width:560px){.task{grid-template-columns:auto 1fr auto;grid-template-areas:"chk rng del" "chk txt del"}
+  .task>.check{grid-area:chk}.task>.t-range{grid-area:rng}.task>.t-text{grid-area:txt}.task>.t-del{grid-area:del}
+  .t-text{font-size:14px}}
+
+.addbar{display:grid;grid-template-columns:150px 1fr auto;gap:10px;margin-top:14px;align-items:center}
+.addbar-range input{font-family:var(--mono);font-weight:700;font-size:13px;border:1px solid var(--line2);border-radius:10px;padding:11px 4px;background:#fff;text-align:center;color:var(--ink);width:100%;min-width:0}
+.addbar-range input::placeholder{color:#bcae97;font-weight:600}
+.addbar input[type=text]#addText{font-size:14.5px;border:1px solid var(--line2);border-radius:10px;padding:11px 13px;background:#fff;color:var(--ink)}
+.addbar input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(237,118,17,.14)}
+@media(max-width:560px){.addbar{grid-template-columns:1fr;}.addbar .btn{width:100%}}
+.time-hint{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:7px;letter-spacing:.03em}
+.sugg{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.sg{font-size:12px;font-weight:600;color:var(--ink2);background:var(--paper2);border:1px dashed var(--line2);border-radius:999px;padding:6px 12px;transition:.14s}
+.sg:hover{border-color:var(--orange);color:var(--orange-d);border-style:solid}
+.day-foot{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.empty{text-align:center;color:var(--muted);padding:26px 10px;font-size:14px}
+.empty .em-ico{font-size:34px;margin-bottom:6px}
+
+/* ---------- routes ---------- */
+.routes-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:4px}
+.route-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:18px}
+.ticket{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow-sm);transition:.18s}
+.ticket.open{border-color:#cfe0ef}
+.ticket.open:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.ticket .stub{background:linear-gradient(135deg,var(--navy2),var(--navy3));color:#fff;padding:11px 14px;display:flex;align-items:center;justify-content:space-between}
+.ticket .stub .seq{font-family:var(--mono);font-size:10px;color:#a9b8e6;letter-spacing:.12em}
+.ticket .stub .flag{font-size:18px}
+.ticket .body{padding:13px 14px 14px;position:relative}
+.ticket .body:before{content:"";position:absolute;top:-7px;left:14px;right:14px;border-top:2px dashed var(--line2)}
+.ticket .pair{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:800;font-size:22px;color:var(--ink)}
+.ticket .pair .arr{color:var(--orange);font-size:16px}
+.ticket .city{font-size:13px;color:var(--ink2);font-weight:600;margin-top:2px}
+.ticket .meta{display:flex;gap:14px;margin-top:9px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ticket .meta b{color:var(--ink2)}
+.ticket .note{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.4;border-top:1px solid var(--line);padding-top:8px}
+.ticket.locked{filter:grayscale(.5);opacity:.7}
+.ticket.locked .stub{background:#9aa3bb}
+.ticket.locked .pair,.ticket.locked .pair .arr{color:#9aa3bb}
+.lock-tag{font-family:var(--mono);font-size:10px;color:#8a93ab;display:flex;align-items:center;gap:6px;margin-top:8px}
+.perf{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--paper);border:1px solid var(--line);top:42px}
+.perf.l{left:-7px}.perf.r{right:-7px}
+
+/* radial map */
+.radial{margin-top:18px}
+.radial svg{width:100%;height:auto;display:block}
+
+/* ---------- rankings ---------- */
+.lb{margin-top:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+.lb-row{display:grid;grid-template-columns:46px 1fr auto;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line)}
+.lb-row:last-child{border-bottom:none}
+.lb-row .pos{font-family:var(--mono);font-weight:800;font-size:15px;color:var(--muted);text-align:center}
+.lb-row .ap{display:flex;align-items:center;gap:9px;min-width:0}
+.lb-row .ap .fl{font-size:17px}
+.lb-row .ap .nm{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-row .ap .cd{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.lb-row .sc{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--ink2)}
+.lb-row.me{background:linear-gradient(90deg,rgba(237,118,17,.13),rgba(237,118,17,.03));border-left:4px solid var(--orange)}
+.lb-row.me .pos{color:var(--orange-d)}
+.lb-row.me .nm{color:var(--orange-d);font-weight:800}
+.lb-row.top1 .pos{color:var(--amber)}
+
+/* ---------- guide ---------- */
+.guide h3{margin-top:18px}
+.guide p{color:var(--ink2);font-size:14.5px;margin:8px 0}
+.guide ul{margin:8px 0 8px;padding-left:18px;color:var(--ink2);font-size:14.5px}
+.guide li{margin:6px 0}
+.score-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.score-table th{background:var(--navy2);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:11px 12px;text-align:left;font-weight:700}
+.score-table td{padding:11px 12px;border-top:1px solid var(--line)}
+.score-table tr:nth-child(even) td{background:var(--paper2)}
+.score-table .pts{font-family:var(--mono);font-weight:800;color:var(--orange-d)}
+.video-frame{margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:#000;aspect-ratio:16/9}
+.video-frame iframe{width:100%;height:100%;border:0;display:block}
+.cap{font-size:12px;color:var(--muted);margin-top:7px;text-align:center}
+.media{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);background:#fff}
+.media img{width:100%}
+.media .cap2{padding:9px 13px;font-size:12.5px;color:var(--ink2);font-weight:600;background:var(--paper2);border-top:1px solid var(--line)}
+.callout{background:linear-gradient(180deg,#fff6ea,#fdeed8);border:1px solid #f2dcb4;border-left:4px solid var(--orange);border-radius:12px;padding:14px 16px;margin-top:14px}
+.callout b{color:var(--orange-d)}
+
+/* ---------- toast & overlay ---------- */
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140%);z-index:60;transition:transform .4s cubic-bezier(.2,.9,.2,1);width:min(92vw,440px)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+.toast-card{background:var(--navy);color:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);border:1px solid #2a3b71}
+.toast-card .tt{font-family:var(--disp);font-weight:800;font-size:18px;display:flex;align-items:center;gap:9px}
+.toast-card .ts{font-size:13px;color:#c7d2f0;margin-top:4px}
+.toast-card .tpts{margin-left:auto;font-family:var(--mono);font-weight:800;color:var(--amber)}
+.toast-card .route{margin-top:9px;font-family:var(--mono);font-size:12px;color:var(--amber);border-top:1px solid #2a3b71;padding-top:9px;display:flex;align-items:center;gap:7px}
+
+#overlay{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:18px;
+  background:rgba(8,15,35,.7);backdrop-filter:blur(6px)}
+#overlay.show{display:flex;animation:fade .3s ease}
+.modal{background:var(--paper2);border-radius:20px;max-width:480px;width:100%;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);overflow:hidden;border:1px solid var(--line)}
+.modal .crown{background:linear-gradient(180deg,var(--navy2),var(--navy));color:#fff;padding:26px 24px 22px;text-align:center;position:relative;overflow:hidden}
+.modal .crown:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% -10%,rgba(244,180,26,.3),transparent 60%)}
+.modal .crown .ic{font-size:46px}
+.modal .crown h2{color:#fff;font-size:30px;margin-top:6px}
+.modal .crown .sub{color:var(--amber);font-family:var(--mono);font-size:12px;letter-spacing:.1em;margin-top:6px}
+.modal .mbody{padding:20px 22px 22px}
+.modal .mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:4px 0 16px}
+.modal .ms{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.modal .ms .v{font-family:var(--disp);font-weight:800;font-size:24px;color:var(--orange-d)}
+.modal .ms .l{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em;margin-top:3px}
+.modal p{color:var(--ink2);font-size:14px;text-align:center;margin:0 0 16px}
+.modal .mbtns{display:flex;gap:10px}
+.modal .mbtns .btn{flex:1}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:69;overflow:hidden;display:none}
+.confetti.show{display:block}
+.confetti i{position:absolute;top:-12px;font-size:16px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(108vh) rotate(540deg);opacity:.9}}
+
+.foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:34px;font-family:var(--mono);letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="logo-plate"><img src="assets/haneda-logo.png" alt="Haneda"></div>
+    <div class="top-tag"><b>OPS CONTROL</b><span>ROAD TO #1 · JULY 2026</span></div>
+    <div class="top-spacer"></div>
+    <div class="jst" title="Your local time"><span class="dot"></span><span id="jstClock">--:--:--</span></div>
+    <button class="btn-reset" id="resetBtn">↺ New Season</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-in" id="tabsBar">
+    <button class="tab active" data-tab="dash"><span class="ico">🛫</span>Control Tower</button>
+    <button class="tab" data-tab="ops"><span class="ico">📋</span>Daily Ops</button>
+    <button class="tab" data-tab="routes"><span class="ico">🌏</span>Route Network</button>
+    <button class="tab" data-tab="rank"><span class="ico">🏆</span>World Rankings</button>
+    <button class="tab" data-tab="guide"><span class="ico">🎧</span>Crew Guide</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===== DASHBOARD ===== -->
+  <section class="view active section-pad" id="view-dash">
+    <div class="board">
+      <div class="board-top">
+        <div>
+          <div class="eyebrow">Tokyo International · HND / RJTT</div>
+          <h2 class="h-lg" id="welcomeLine">Welcome aboard, Director.</h2>
+        </div>
+        <div class="dir-edit">
+          <label>DIRECTOR</label>
+          <input id="dirInput" placeholder="Your name" maxlength="22" autocomplete="off">
+        </div>
+      </div>
+      <div class="board-stats">
+        <div class="stat"><div class="k">WORLD RANK</div><span class="flap" id="sRank">#19</span><div class="sub" id="sRankSub">of 30 hubs</div></div>
+        <div class="stat"><div class="k">SEASON POINTS</div><span class="flap" id="sPts">0</span><div class="sub">of 496 max</div></div>
+        <div class="stat"><div class="k">ROUTES OPEN</div><span class="flap" id="sRoutes">0</span><div class="sub">of 31 city-pairs</div></div>
+        <div class="stat"><div class="k">DAYS LOGGED</div><span class="flap" id="sDays">0</span><div class="sub">of 31 in July</div></div>
+      </div>
+      <div class="runway-wrap">
+        <div class="runway-label"><span>RUNWAY 34R · MISSION PROGRESS</span><span id="runwayPct">0%</span></div>
+        <div class="runway">
+          <div class="runway-fill" id="runwayFill" style="width:0%"></div>
+          <div class="plane" id="planeIcon" style="left:0%">✈️</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-pad brief">
+        <div class="eyebrow">Mission Brief</div>
+        <h3 class="h-md">Make Haneda the #1 airport on Earth</h3>
+        <p>You are the Operations Director of Haneda. Plan each day of July 2026, fly your real to-do list like a flight schedule, and close out the day. The better you keep to schedule, the higher Haneda climbs against the world's top hubs — and every day you log opens a brand-new international route on the board.</p>
+        <p class="muted" id="briefStatus" style="font-size:13px"></p>
+        <div class="day-foot">
+          <button class="btn btn-primary" id="goPlan">📋 Plan today's schedule</button>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <div class="eyebrow">July 2026 · Flight Log</div>
+        <h3 class="h-md">Your month at a glance</h3>
+        <div class="minical" id="miniCal"></div>
+        <div class="chip-row" style="margin-top:14px;font-size:11px">
+          <span class="muted" style="font-family:var(--mono)">🟩 16pt &nbsp; 🟢 8pt &nbsp; 🟡 4pt &nbsp; 🟤 logged &nbsp; ◻ planned</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DAILY OPS ===== -->
+  <section class="view section-pad" id="view-ops">
+    <div class="card card-pad">
+      <div class="eyebrow">Daily Operations · July 2026</div>
+      <h2 class="h-lg">Today's Flight Schedule</h2>
+      <p class="lead" style="margin-top:6px">Pick any day, add your tasks with a time range like <b>04.30 - 08.00</b> (on your own local clock) — or leave the times blank for “anytime” — tick them off as you go, then close out the day to score points and open a new route.</p>
+      <div class="daystrip" id="dayStrip"></div>
+
+      <div class="day-panel" id="dayPanel"></div>
+    </div>
+  </section>
+
+  <!-- ===== ROUTES ===== -->
+  <section class="view section-pad" id="view-routes">
+    <div class="card card-pad">
+      <div class="routes-head">
+        <div>
+          <div class="eyebrow">Route Network · HND International</div>
+          <h2 class="h-lg">Haneda's Growing Map</h2>
+        </div>
+        <div style="margin-left:auto;text-align:right">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em">ROUTES OPEN</div>
+          <div style="font-family:var(--disp);font-weight:800;font-size:30px;color:var(--orange-d)"><span id="rOpen">0</span> / 31</div>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:8px">Every day you log unlocks the next real-world Haneda international service — ordered as the network expands outward across Asia and around the globe.</p>
+      <div class="radial" id="radialMap"></div>
+      <div class="route-grid" id="routeGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== RANKINGS ===== -->
+  <section class="view section-pad" id="view-rank">
+    <div class="card card-pad">
+      <div class="eyebrow">The Global Standings</div>
+      <h2 class="h-lg">World's Best Airports Leaderboard</h2>
+      <p class="lead" style="margin-top:6px">Haneda is competing against 30 of the planet's leading international hubs. Stay on schedule to climb the board — reach the summit to be crowned <b>#1 in the world</b>.</p>
+      <div class="lb" id="leaderboard"></div>
+    </div>
+  </section>
+
+  <!-- ===== GUIDE ===== -->
+  <section class="view section-pad guide" id="view-guide">
+    <div class="card card-pad">
+      <div class="eyebrow">Crew Guide · You've got this</div>
+      <h2 class="h-lg">How to Play (and why you'll love it)</h2>
+      <p>Hello, Director! 👋 Think of this game as a friendly co-pilot for your real life. Your everyday to-do list becomes a flight schedule, and every task you finish helps a real airport — Haneda — climb toward the top of the world. No pressure, just progress. Here's everything you need to know.</p>
+
+      <h3 class="h-md">✈️ The 4 simple steps</h3>
+      <ul>
+        <li><b>1. Plan.</b> Go to <b>Daily Ops</b>, tap any day in July, and add your tasks. Set whatever time fits <i>your</i> day — early, late, or no time at all. Nothing is forced to a default.</li>
+        <li><b>2. Fly.</b> As you finish each task in real life, tap its box to check it off. Watch your day fill up.</li>
+        <li><b>3. Close out.</b> Hit <b>Close out the day</b> to lock in your score based on how much you completed.</li>
+        <li><b>4. Grow.</b> Each closed-out day opens a new Haneda route and nudges you up the world rankings. Finish all 31 days and Haneda is crowned #1! 🏆</li>
+      </ul>
+
+      <h3 class="h-md">🎯 How scoring works</h3>
+      <p>Score is based on how much of your planned schedule you complete that day:</p>
+      <table class="score-table">
+        <thead><tr><th>You completed…</th><th>Status</th><th>Points</th></tr></thead>
+        <tbody>
+          <tr><td>100% of your schedule</td><td>Perfect Departure ✦</td><td class="pts">16 pts</td></tr>
+          <tr><td>75% or more</td><td>On Schedule</td><td class="pts">8 pts</td></tr>
+          <tr><td>50% or more</td><td>Cleared for Takeoff</td><td class="pts">4 pts</td></tr>
+          <tr><td>Below 50%</td><td>Holding Pattern</td><td class="pts">0 pts</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <b>A gentle reminder:</b> a low-scoring day is never a failure — even the world's best airports have foggy mornings and delays. Reopen any day to edit it, log tomorrow, and keep flying. You can always replay the whole season too. The goal is steady momentum, not perfection. 💛
+      </div>
+
+      <h3 class="h-md">🎥 Welcome to Haneda</h3>
+      <p>New to the airport you're running? Here's the official Haneda guide to get you in the captain's seat:</p>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/TCqTbsP7J7s" title="Haneda Airport Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="cap">▶ “Haneda Airport Survival Guide” — transport, amenities & what to expect. (If it doesn't load, <a href="https://youtu.be/TCqTbsP7J7s" target="_blank" rel="noopener">open it on YouTube</a>.)</p>
+
+      <h3 class="h-md">🗺️ Know your terminals</h3>
+      <div class="media">
+        <img src="assets/haneda-map.jpg" alt="Haneda Airport terminal map">
+        <div class="cap2">Haneda terminal map — Terminals 1 &amp; 2 (domestic) and Terminal 3 (international), with check-in, security, baggage claim, shops &amp; dining.</div>
+      </div>
+
+      <h3 class="h-md">🛍️ What to do at Haneda</h3>
+      <div class="media">
+        <img src="assets/haneda-what-to-do.jpg" alt="What to do at Haneda Airport">
+        <div class="cap2">Relax in a lounge, enjoy Japanese &amp; international dining, shop the duty-free stores, freshen up, or watch planes from the observation deck.</div>
+      </div>
+
+      <div class="callout" style="margin-top:18px">
+        <b>Your data stays with you.</b> Your schedule and progress save automatically in this browser — close the tab and come back anytime, your season will be waiting. Running the file on your own computer works too.
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">HANEDA OPS · a friendly habit &amp; task game · HND ✈ the world · built for July 2026</div>
+</div>
+
+<!-- toast -->
+<div id="toast"><div class="toast-card">
+  <div style="display:flex;align-items:center"><div class="tt" id="toastTitle">✈️ Logged</div><div class="tpts" id="toastPts">+0</div></div>
+  <div class="ts" id="toastSub"></div>
+  <div class="route" id="toastRoute" style="display:none"></div>
+</div></div>
+
+<!-- overlay -->
+<div id="overlay"><div class="modal" id="modal"></div></div>
+<div class="confetti" id="confetti"></div>
+
+<script>
+"use strict";
+
+/* ===================== STORAGE (window.storage → localStorage fallback) ===================== */
+const KEY = "haneda_ops_2026_07_v1";
+const Store = {
+  hasWS(){ return (typeof window!=="undefined") && window.storage && typeof window.storage.get==="function"; },
+  async load(){
+    if(this.hasWS()){
+      try{ const r = await window.storage.get(KEY); if(r && r.value) return JSON.parse(r.value); }
+      catch(e){ /* fall through to localStorage */ }
+    }
+    try{ const v = localStorage.getItem(KEY); return v ? JSON.parse(v) : null; }
+    catch(e){ return null; }
+  },
+  async save(obj){
+    const str = JSON.stringify(obj);
+    if(this.hasWS()){
+      try{ await window.storage.set(KEY, str); return; }
+      catch(e){ /* fall through */ }
+    }
+    try{ localStorage.setItem(KEY, str); }catch(e){}
+  },
+  async clear(){
+    if(this.hasWS()){ try{ await window.storage.delete(KEY); }catch(e){} }
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  }
+};
+
+/* ===================== DATA ===================== */
+const YEAR=2026, MONTH=6 /*July*/, DAYS_IN_MONTH=31, MAX_PTS=DAYS_IN_MONTH*16; // 496
+const DOW=["SUN","MON","TUE","WED","THU","FRI","SAT"];
+
+// 31 real Haneda international routes, ordered by distance (network expanding outward)
+const ROUTES=[
+ {to:"GMP",city:"Seoul Gimpo",cty:"South Korea",fl:"🇰🇷",km:1255,t:"2h20",note:"Tokyo–Seoul is among Asia's most-flown cross-border corridors — pure precision flying."},
+ {to:"ICN",city:"Seoul Incheon",cty:"South Korea",fl:"🇰🇷",km:1290,t:"2h25",note:"Incheon–Tokyo is one of 2026's fastest-growing international routes (+24% YoY)."},
+ {to:"PVG",city:"Shanghai Pudong",cty:"China",fl:"🇨🇳",km:1770,t:"3h05",note:"A backbone business link between two of Asia's biggest economies."},
+ {to:"SHA",city:"Shanghai Hongqiao",cty:"China",fl:"🇨🇳",km:1760,t:"3h00",note:"Downtown-to-downtown — the express choice for Tokyo–Shanghai commuters."},
+ {to:"PEK",city:"Beijing Capital",cty:"China",fl:"🇨🇳",km:2100,t:"3h45",note:"Connecting two capitals — high-frequency and heavily business-driven."},
+ {to:"TPE",city:"Taipei Taoyuan",cty:"Taiwan",fl:"🇹🇼",km:2100,t:"3h40",note:"Hong Kong–Taipei is the world's #1 international route; Tokyo rides the same booming corridor."},
+ {to:"TSA",city:"Taipei Songshan",cty:"Taiwan",fl:"🇹🇼",km:2090,t:"3h35",note:"The premium city-center HND–TSA shuttle — minutes from both downtowns."},
+ {to:"HKG",city:"Hong Kong",cty:"Hong Kong",fl:"🇭🇰",km:2890,t:"4h45",note:"A gateway to one of the planet's busiest international hubs."},
+ {to:"CAN",city:"Guangzhou",cty:"China",fl:"🇨🇳",km:2900,t:"4h40",note:"Linking Tokyo to the Pearl River Delta's vast manufacturing engine."},
+ {to:"MNL",city:"Manila",cty:"Philippines",fl:"🇵🇭",km:2990,t:"4h35",note:"A fast-growing leisure and labour corridor across the Pacific rim."},
+ {to:"HAN",city:"Hanoi",cty:"Vietnam",fl:"🇻🇳",km:3670,t:"5h45",note:"Hanoi–HCMC is a top-4 busiest route worldwide — Vietnam demand is soaring."},
+ {to:"BKK",city:"Bangkok Suvarnabhumi",cty:"Thailand",fl:"🇹🇭",km:4610,t:"6h40",note:"One of Asia's great leisure highways — sun-seekers and business alike."},
+ {to:"SGN",city:"Ho Chi Minh City",cty:"Vietnam",fl:"🇻🇳",km:4360,t:"6h20",note:"Vietnam's commercial heart, booming with two-way trade and tourism."},
+ {to:"SIN",city:"Singapore Changi",cty:"Singapore",fl:"🇸🇬",km:5310,t:"7h20",note:"Changi is the benchmark every airport measures itself against — your true rival."},
+ {to:"KUL",city:"Kuala Lumpur",cty:"Malaysia",fl:"🇲🇾",km:5330,t:"7h25",note:"KL–Singapore is a top-5 global international route; this is intensely competitive airspace."},
+ {to:"CGK",city:"Jakarta",cty:"Indonesia",fl:"🇮🇩",km:5790,t:"7h40",note:"Jakarta–Singapore was 2025's fastest-growing top-10 international route (+14%)."},
+ {to:"DEL",city:"Delhi",cty:"India",fl:"🇮🇳",km:5860,t:"9h25",note:"Mumbai–Delhi cracked the global top 10 in 2025 — India is the new frontier."},
+ {to:"BOM",city:"Mumbai",cty:"India",fl:"🇮🇳",km:6740,t:"10h05",note:"Gateway to India's financial capital and a vast diaspora market."},
+ {to:"SYD",city:"Sydney",cty:"Australia",fl:"🇦🇺",km:7820,t:"9h40",note:"A flagship long-haul leisure link to the Southern Hemisphere."},
+ {to:"HNL",city:"Honolulu",cty:"USA · Hawaii",fl:"🇺🇸",km:6200,t:"6h55",note:"Japan's most-loved beach escape — a perennial high-demand classic."},
+ {to:"YVR",city:"Vancouver",cty:"Canada",fl:"🇨🇦",km:7580,t:"9h00",note:"A scenic Pacific gateway into North America's west."},
+ {to:"SFO",city:"San Francisco",cty:"USA",fl:"🇺🇸",km:8280,t:"9h25",note:"LAX–SFO is a US powerhouse sector; the West Coast is a key tech gateway."},
+ {to:"LAX",city:"Los Angeles",cty:"USA",fl:"🇺🇸",km:8790,t:"10h00",note:"One of the largest trans-Pacific markets on Earth."},
+ {to:"YYZ",city:"Toronto Pearson",cty:"Canada",fl:"🇨🇦",km:10330,t:"12h05",note:"A long-haul flagship reaching deep into eastern North America."},
+ {to:"JFK",city:"New York JFK",cty:"USA",fl:"🇺🇸",km:10850,t:"12h50",note:"JFK–LAX is a US transcon giant; New York is a global flagship market."},
+ {to:"DXB",city:"Dubai",cty:"UAE",fl:"🇦🇪",km:7930,t:"11h30",note:"Dubai is among the world's busiest international hubs — your direct competition."},
+ {to:"DOH",city:"Doha Hamad",cty:"Qatar",fl:"🇶🇦",km:8040,t:"11h45",note:"Hamad is a repeat 'World's Best Airport' — a Gulf super-connector."},
+ {to:"IST",city:"Istanbul",cty:"Turkey",fl:"🇹🇷",km:8900,t:"12h35",note:"A bridge between Asia and Europe at one of the world's largest airports."},
+ {to:"LHR",city:"London Heathrow",cty:"United Kingdom",fl:"🇬🇧",km:9580,t:"14h20",note:"Europe's premier hub — a marquee route for any global airport."},
+ {to:"CDG",city:"Paris CDG",cty:"France",fl:"🇫🇷",km:9730,t:"14h30",note:"Continental Europe's elegant flagship gateway."},
+ {to:"FRA",city:"Frankfurt",cty:"Germany",fl:"🇩🇪",km:9360,t:"14h10",note:"Europe's industrial heart — completing Haneda's global network. Mission complete! 🎉"}
+];
+
+// 30 rival international hubs (Haneda is the player, spliced in by rank)
+const RIVALS=[
+ {nm:"Singapore Changi",cd:"SIN",fl:"🇸🇬"},{nm:"Doha Hamad",cd:"DOH",fl:"🇶🇦"},
+ {nm:"Seoul Incheon",cd:"ICN",fl:"🇰🇷"},{nm:"Dubai Intl",cd:"DXB",fl:"🇦🇪"},
+ {nm:"Hong Kong Intl",cd:"HKG",fl:"🇭🇰"},{nm:"Munich",cd:"MUC",fl:"🇩🇪"},
+ {nm:"Zurich",cd:"ZRH",fl:"🇨🇭"},{nm:"Istanbul",cd:"IST",fl:"🇹🇷"},
+ {nm:"London Heathrow",cd:"LHR",fl:"🇬🇧"},{nm:"Paris CDG",cd:"CDG",fl:"🇫🇷"},
+ {nm:"Amsterdam Schiphol",cd:"AMS",fl:"🇳🇱"},{nm:"Frankfurt",cd:"FRA",fl:"🇩🇪"},
+ {nm:"Vienna",cd:"VIE",fl:"🇦🇹"},{nm:"Copenhagen",cd:"CPH",fl:"🇩🇰"},
+ {nm:"Helsinki",cd:"HEL",fl:"🇫🇮"},{nm:"Madrid Barajas",cd:"MAD",fl:"🇪🇸"},
+ {nm:"Barcelona",cd:"BCN",fl:"🇪🇸"},{nm:"Vancouver",cd:"YVR",fl:"🇨🇦"},
+ {nm:"Toronto Pearson",cd:"YYZ",fl:"🇨🇦"},{nm:"Los Angeles",cd:"LAX",fl:"🇺🇸"},
+ {nm:"San Francisco",cd:"SFO",fl:"🇺🇸"},{nm:"New York JFK",cd:"JFK",fl:"🇺🇸"},
+ {nm:"Sydney",cd:"SYD",fl:"🇦🇺"},{nm:"Bangkok Suvarnabhumi",cd:"BKK",fl:"🇹🇭"},
+ {nm:"Kuala Lumpur",cd:"KUL",fl:"🇲🇾"},{nm:"Taipei Taoyuan",cd:"TPE",fl:"🇹🇼"},
+ {nm:"Shanghai Pudong",cd:"PVG",fl:"🇨🇳"},{nm:"Beijing Capital",cd:"PEK",fl:"🇨🇳"},
+ {nm:"Delhi",cd:"DEL",fl:"🇮🇳"},{nm:"Guangzhou",cd:"CAN",fl:"🇨🇳"}
+];
+
+const SUGGESTIONS=["Morning runway inspection","Brief the ground crew","Review on-time performance","Reply to priority emails","Deep-work block","Lunch break ✈","Workout / move","Tidy the terminal (desk)","Plan tomorrow"];
+
+/* ===================== STATE ===================== */
+let S = null;
+function blankState(){ return { v:1, director:"", days:{}, selected:dk(1), gameOverSeen:false }; }
+function dk(d){ return YEAR+"-07-"+String(d).padStart(2,"0"); }
+function dayNum(key){ return parseInt(key.slice(-2),10); }
+function ensureDay(key){ if(!S.days[key]) S.days[key]={tasks:[],logged:false,pct:0,points:0}; return S.days[key]; }
+
+/* ===================== DERIVED ===================== */
+function loggedDays(){ return Object.values(S.days).filter(d=>d.logged).length; }
+function totalPoints(){ return Object.values(S.days).reduce((a,d)=>a+(d.logged?d.points:0),0); }
+function routesOpen(){ return Math.min(loggedDays(), 31); }
+function progressFrac(){ return totalPoints()/MAX_PTS; }
+function worldRank(){
+  // climb from #19 (0 pts) to #1; reach #1 at ~70% of max points
+  const r = Math.round(19 - 18*Math.min(1, progressFrac()/0.7));
+  return Math.max(1, Math.min(19, r));
+}
+function tierFor(pct){
+  if(pct>=100) return {pts:16,key:"16",title:"PERFECT DEPARTURE",ico:"✦",rc:"rc16",
+    msg:"Flawless ops — every flight on time. The whole world is watching Haneda."};
+  if(pct>=75)  return {pts:8,key:"8",title:"ON SCHEDULE",ico:"✓",rc:"rc8",
+    msg:"Strong, steady operations today. This is how #1 airports run."};
+  if(pct>=50)  return {pts:4,key:"4",title:"CLEARED FOR TAKEOFF",ico:"➜",rc:"rc4",
+    msg:"Solid progress — you got the big flights out. Keep the momentum."};
+  return {pts:0,key:"0",title:"HOLDING PATTERN",ico:"⌖",rc:"rc0",
+    msg:"A foggy day on the tarmac — it happens to every great hub. Tomorrow is a fresh runway. 💛"};
+}
+
+/* ===================== PERSIST ===================== */
+let saveTimer=null;
+function persist(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>Store.save(S),120); }
+
+/* ===================== RENDER ===================== */
+function renderAll(){ renderDash(); renderStrip(); renderDayPanel(); renderRoutes(); renderRank(); }
+
+function renderDash(){
+  const rank=worldRank(), pts=totalPoints(), ro=routesOpen(), ld=loggedDays();
+  document.getElementById("sRank").textContent="#"+rank;
+  document.getElementById("sRankSub").textContent = rank===1 ? "world's best ✦" : "of 30 hubs";
+  document.getElementById("sPts").textContent=pts;
+  document.getElementById("sRoutes").textContent=ro;
+  document.getElementById("sDays").textContent=ld;
+  const pct=Math.round(ld/DAYS_IN_MONTH*100);
+  document.getElementById("runwayPct").textContent=pct+"%";
+  document.getElementById("runwayFill").style.width=pct+"%";
+  document.getElementById("planeIcon").style.left=Math.max(2,Math.min(97,pct))+"%";
+  document.getElementById("dirInput").value=S.director||"";
+  const name=S.director?S.director.trim():"";
+  document.getElementById("welcomeLine").textContent = name ? ("Welcome aboard, "+name+".") : "Welcome aboard, Director.";
+  // brief status
+  const left=DAYS_IN_MONTH-ld;
+  let bs;
+  if(ld===0) bs="No days logged yet. Tap “Plan today's schedule” to begin your season — the board is waiting.";
+  else if(rank===1) bs="🏆 You're #1 in the world! "+left+" day(s) left to make it official.";
+  else bs=ld+" day(s) logged · "+pts+" pts · currently #"+rank+" worldwide · "+left+" day(s) to the finish line.";
+  document.getElementById("briefStatus").textContent=bs;
+  // minical
+  const mc=document.getElementById("miniCal"); mc.innerHTML="";
+  for(let d=1;d<=DAYS_IN_MONTH;d++){
+    const key=dk(d), day=S.days[key];
+    const el=document.createElement("div"); el.className="mc"; el.textContent=d;
+    if(day){
+      if(day.logged){ el.classList.add("log"+day.points); }
+      else if(day.tasks.length){ el.classList.add("has"); }
+    }
+    el.title=key;
+    mc.appendChild(el);
+  }
+}
+
+function chipClass(day){
+  if(!day) return "";
+  if(day.logged) return "logged l"+day.points;
+  if(day.tasks.length) return "has";
+  return "";
+}
+function renderStrip(){
+  const strip=document.getElementById("dayStrip"); strip.innerHTML="";
+  for(let d=1;d<=DAYS_IN_MONTH;d++){
+    const key=dk(d), day=S.days[key];
+    const dow=DOW[new Date(YEAR,MONTH,d).getDay()];
+    const el=document.createElement("button");
+    el.className="daychip "+chipClass(day)+(S.selected===key?" sel":"");
+    let badge="";
+    if(day){ if(day.logged) badge="+"+day.points; else if(day.tasks.length) badge=day.tasks.length+"✈"; }
+    el.innerHTML='<div class="dow">'+dow+'</div><div class="dnum">'+d+'</div><div class="badge">'+badge+'</div>';
+    el.onclick=()=>{ S.selected=key; persist(); renderStrip(); renderDayPanel(); };
+    strip.appendChild(el);
+  }
+}
+
+/* Normalize any user input ("0430", "4:30", "4.30", "430", "4") into "HH.MM" (dot, 24h, zero-padded), or "" if blank/invalid. */
+function normTime(raw){
+  if(raw==null) return "";
+  let s=String(raw).trim();
+  if(!s) return "";
+  s=s.replace(/[^\d]/g,"");                 // keep digits only
+  if(!s) return "";
+  let h,m;
+  if(s.length<=2){ h=parseInt(s,10); m=0; } // "4" or "16" -> on the hour
+  else if(s.length===3){ h=parseInt(s.slice(0,1),10); m=parseInt(s.slice(1),10); }   // "430" -> 4.30
+  else { h=parseInt(s.slice(0,2),10); m=parseInt(s.slice(2,4),10); }                 // "0430"/"1630"
+  if(isNaN(h)||isNaN(m)) return "";
+  h=Math.max(0,Math.min(23,h)); m=Math.max(0,Math.min(59,m));
+  return String(h).padStart(2,"0")+"."+String(m).padStart(2,"0");
+}
+/* Display a range as "04.30 - 08.00"; single bound or "ANY" otherwise. */
+function fmtRange(start,end){
+  const s=start||"", e=end||"";
+  if(s&&e) return s+" - "+e;
+  if(s)    return s+" →";
+  if(e)    return "→ "+e;
+  return "ANY";
+}
+function sortTasks(tasks){
+  return tasks.slice().sort((a,b)=>{
+    const as=a.start||"", bs=b.start||"";
+    if(as&&bs) return as<bs?-1:as>bs?1:0;
+    if(as&&!bs) return -1;
+    if(!as&&bs) return 1;
+    return 0;
+  });
+}
+function renderDayPanel(){
+  const key=S.selected, day=S.days[key];
+  const d=dayNum(key);
+  const full=new Date(YEAR,MONTH,d).toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
+  const panel=document.getElementById("dayPanel");
+  const tasks = day? day.tasks : [];
+  const total=tasks.length, done=tasks.filter(t=>t.done).length;
+  const pct= total? Math.round(done/total*100):0;
+
+  let head='<div class="day-head"><div><div class="eyebrow">Daily Flight Plan</div><div class="big">'+full+'</div></div>';
+  if(day&&day.logged){
+    const t=tierFor(day.pct);
+    head+='<div class="result-chip '+t.rc+'">'+t.ico+' '+t.title+' · '+day.pct+'% · +'+day.points+'pts</div>';
+  } else if(total){
+    head+='<div class="result-chip rc4" style="background:#eaf2fa;color:var(--sky-d);border-color:#cfe2f2">📈 '+done+'/'+total+' done · '+pct+'%</div>';
+  }
+  head+='</div>';
+
+  // tasklist
+  let list='<div class="tasklist" id="taskList">';
+  if(!total){
+    list+='<div class="empty"><div class="em-ico">🛫</div>No flights scheduled yet for this day.<br>Add your first task below — at any time you like.</div>';
+  } else {
+    sortTasks(tasks).forEach(t=>{
+      list+='<div class="task'+(t.done?' done':'')+'" data-id="'+t.id+'">'+
+        '<button class="check" data-act="toggle" title="Mark done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>'+
+        '<div class="t-range" title="Start &amp; end — type like 04.30">'+
+          '<input class="t-time" type="text" inputmode="numeric" maxlength="5" value="'+escAttr(t.start||"")+'" data-act="start" placeholder="--.--" aria-label="start time">'+
+          '<span class="t-dash">–</span>'+
+          '<input class="t-time" type="text" inputmode="numeric" maxlength="5" value="'+escAttr(t.end||"")+'" data-act="end" placeholder="--.--" aria-label="end time">'+
+        '</div>'+
+        '<input class="t-text" type="text" value="'+escAttr(t.text)+'" data-act="text" placeholder="Task…">'+
+        '<button class="t-del" data-act="del" title="Remove">✕</button>'+
+        '</div>';
+    });
+  }
+  list+='</div>';
+
+  // add bar
+  let add='<div class="addbar">'+
+    '<div class="t-range addbar-range" title="Start &amp; end — type like 04.30">'+
+      '<input id="addStart" type="text" inputmode="numeric" maxlength="5" placeholder="04.30" aria-label="start time">'+
+      '<span class="t-dash">–</span>'+
+      '<input id="addEnd" type="text" inputmode="numeric" maxlength="5" placeholder="08.00" aria-label="end time">'+
+    '</div>'+
+    '<input type="text" id="addText" placeholder="Add a task — e.g. Deep Work" autocomplete="off">'+
+    '<button class="btn btn-navy" id="addBtn">＋ Add</button>'+
+    '</div>'+
+    '<div class="time-hint">⏱ Times are optional — type a range like <b>04.30 - 08.00</b> on YOUR local clock, or leave blank for “anytime”. Nothing defaults to a set time.</div>';
+  // suggestions
+  let sg='<div class="sugg">';
+  SUGGESTIONS.forEach(s=>{ sg+='<button class="sg" data-sg="'+escAttr(s)+'">+ '+s+'</button>'; });
+  sg+='</div>';
+
+  // footer
+  let foot='<div class="day-foot">';
+  if(day&&day.logged){
+    foot+='<button class="btn btn-ghost" id="reopenBtn">✎ Reopen & edit this day</button>'+
+          '<span class="muted" style="font-size:13px">Score locked in. Reopen to change tasks — your points will recalculate.</span>';
+  } else {
+    foot+='<button class="btn btn-primary" id="logBtn"'+(total?'':' disabled')+'>🛫 Close out the day &amp; score</button>';
+    if(total) foot+='<span class="muted" style="font-size:13px">Completing ≥50% earns 4 pts · ≥75% earns 8 · 100% earns 16.</span>';
+    else foot+='<span class="muted" style="font-size:13px">Add at least one task to close out the day.</span>';
+  }
+  foot+='</div>';
+
+  panel.innerHTML='<div class="card-pad" style="padding:0">'+head+list+add+sg+foot+'</div>';
+  wireDayPanel();
+}
+
+function escAttr(s){ return (s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function wireDayPanel(){
+  const key=S.selected;
+  // task rows
+  document.querySelectorAll("#taskList .task").forEach(row=>{
+    const id=row.getAttribute("data-id");
+    const day=ensureDay(key);
+    const task=day.tasks.find(t=>t.id===id);
+    if(!task) return;
+    const chk=row.querySelector('[data-act="toggle"]');
+    if(chk) chk.onclick=()=>{ task.done=!task.done; persist(); renderDayPanel(); renderStrip(); };
+    const st=row.querySelector('[data-act="start"]');
+    if(st) st.onchange=(e)=>{ task.start=normTime(e.target.value); persist(); renderDayPanel(); };
+    const en=row.querySelector('[data-act="end"]');
+    if(en) en.onchange=(e)=>{ task.end=normTime(e.target.value); persist(); renderDayPanel(); };
+    const tx=row.querySelector('[data-act="text"]');
+    if(tx){ tx.onchange=(e)=>{ task.text=e.target.value; persist(); };
+            tx.onblur=()=>{ if(!task.text.trim()){ day.tasks=day.tasks.filter(t=>t.id!==id); persist(); renderDayPanel(); renderStrip(); } }; }
+    const dl=row.querySelector('[data-act="del"]');
+    if(dl) dl.onclick=()=>{ day.tasks=day.tasks.filter(t=>t.id!==id); if(!day.tasks.length && !day.logged) delete S.days[key]; persist(); renderDayPanel(); renderStrip(); renderDash(); };
+  });
+  // add
+  const addBtn=document.getElementById("addBtn"), addText=document.getElementById("addText"),
+        addStart=document.getElementById("addStart"), addEnd=document.getElementById("addEnd");
+  function doAdd(){
+    const txt=(addText.value||"").trim(); if(!txt) { addText.focus(); return; }
+    const day=ensureDay(key);
+    day.tasks.push({id:"t"+Date.now()+Math.floor(Math.random()*999), text:txt, start:normTime(addStart.value), end:normTime(addEnd.value), done:false});
+    persist(); renderDayPanel(); renderStrip(); renderDash();
+    setTimeout(()=>{ const a=document.getElementById("addText"); if(a) a.focus(); },0);
+  }
+  if(addBtn) addBtn.onclick=doAdd;
+  if(addText) addText.onkeydown=(e)=>{ if(e.key==="Enter") doAdd(); };
+  if(addStart) addStart.onkeydown=(e)=>{ if(e.key==="Enter") doAdd(); };
+  if(addEnd) addEnd.onkeydown=(e)=>{ if(e.key==="Enter") doAdd(); };
+  // suggestions
+  document.querySelectorAll("[data-sg]").forEach(b=>{
+    b.onclick=()=>{ const day=ensureDay(key);
+      day.tasks.push({id:"t"+Date.now()+Math.floor(Math.random()*999), text:b.getAttribute("data-sg"), start:"", end:"", done:false});
+      persist(); renderDayPanel(); renderStrip(); renderDash(); };
+  });
+  // log / reopen
+  const logBtn=document.getElementById("logBtn");
+  if(logBtn) logBtn.onclick=()=>logDay(key);
+  const reopenBtn=document.getElementById("reopenBtn");
+  if(reopenBtn) reopenBtn.onclick=()=>{ const day=S.days[key]; day.logged=false; day.points=0; day.pct=0; persist(); renderAll(); };
+}
+
+function logDay(key){
+  const day=ensureDay(key);
+  if(!day.tasks.length) return;
+  const total=day.tasks.length, done=day.tasks.filter(t=>t.done).length;
+  const pct=Math.round(done/total*100);
+  const t=tierFor(pct);
+  day.logged=true; day.pct=pct; day.points=t.pts;
+  persist();
+  const opened=routesOpen(); // routes now open
+  const newRoute = (opened>=1 && opened<=31) ? ROUTES[opened-1] : null;
+  renderAll();
+  showToast(t, pct, newRoute);
+  if(loggedDays()===DAYS_IN_MONTH){ setTimeout(()=>showGameOver(),700); }
+}
+
+/* ===================== ROUTES VIEW ===================== */
+function renderRoutes(){
+  const open=routesOpen();
+  document.getElementById("rOpen").textContent=open;
+  // grid
+  const grid=document.getElementById("routeGrid"); grid.innerHTML="";
+  ROUTES.forEach((r,i)=>{
+    const isOpen=i<open;
+    const card=document.createElement("div");
+    card.className="ticket "+(isOpen?"open":"locked");
+    let inner='<div class="stub"><span class="seq">RTE '+String(i+1).padStart(2,"0")+'</span><span class="flag">'+(isOpen?r.fl:"🔒")+'</span></div>'+
+      '<span class="perf l"></span><span class="perf r"></span>'+
+      '<div class="body">'+
+        '<div class="pair">HND <span class="arr">✈</span> '+r.to+'</div>'+
+        '<div class="city">'+(isOpen? r.city+' · '+r.cty : 'Awaiting clearance')+'</div>';
+    if(isOpen){
+      inner+='<div class="meta"><span>📏 <b>'+r.km.toLocaleString()+'</b> km</span><span>⏱ <b>'+r.t+'</b></span></div>'+
+             '<div class="note">'+r.note+'</div>';
+    } else {
+      inner+='<div class="lock-tag">🔒 Log a day to open this route</div>';
+    }
+    inner+='</div>';
+    card.innerHTML=inner;
+    grid.appendChild(card);
+  });
+  renderRadial(open);
+}
+
+function renderRadial(open){
+  const wrap=document.getElementById("radialMap");
+  const W=920,H=360,cx=120,cy=H/2;
+  // place destinations on the right in an arc
+  let nodes="";
+  const n=ROUTES.length;
+  for(let i=0;i<n;i++){
+    const r=ROUTES[i];
+    const ang=(-1+ (2*i/(n-1)))*0.85; // -0.85..0.85 rad spread
+    const len=300+ (i%3)*70 + Math.min(i,18)*8;
+    const x=cx+Math.cos(ang)*len*1.0 + 120;
+    const y=cy+Math.sin(ang)*150;
+    const isOpen=i<open;
+    const col=isOpen? "var(--orange)":"#d7cdb8";
+    nodes+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="'+col+'" stroke-width="'+(isOpen?1.6:1)+'" stroke-dasharray="'+(isOpen?"0":"3 4")+'" opacity="'+(isOpen?.9:.5)+'"/>';
+    nodes+='<circle cx="'+x+'" cy="'+y+'" r="'+(isOpen?4.5:3)+'" fill="'+(isOpen?"var(--orange)":"#cfc6b2")+'"/>';
+    if(isOpen){ nodes+='<text x="'+(x+7)+'" y="'+(y+3.5)+'" font-family="var(--mono),monospace" font-size="10" fill="var(--ink2)">'+r.to+'</text>'; }
+  }
+  wrap.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet" aria-label="Haneda route map">'+
+    '<defs><radialGradient id="hub" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2f86c9"/><stop offset="100%" stop-color="#15224d"/></radialGradient></defs>'+
+    nodes+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="13" fill="url(#hub)" stroke="#fff" stroke-width="2"/>'+
+    '<text x="'+cx+'" y="'+(cy-20)+'" text-anchor="middle" font-family="var(--disp),sans-serif" font-weight="800" font-size="16" fill="var(--ink)">HND</text>'+
+    '<text x="'+cx+'" y="'+(cy+30)+'" text-anchor="middle" font-family="var(--mono),monospace" font-size="9" fill="var(--muted)">TOKYO</text>'+
+    '</svg>';
+}
+
+/* ===================== RANK VIEW ===================== */
+function renderRank(){
+  const rank=worldRank(), pts=totalPoints();
+  const list=RIVALS.slice();
+  const me={nm:"Tokyo Haneda", cd:"HND", fl:"🇯🇵", me:true, score:pts};
+  list.splice(rank-1,0,me);
+  const lb=document.getElementById("leaderboard"); lb.innerHTML="";
+  list.forEach((a,idx)=>{
+    const pos=idx+1;
+    const row=document.createElement("div");
+    row.className="lb-row"+(a.me?" me":"")+(pos===1?" top1":"");
+    const medal = pos===1?"🥇":pos===2?"🥈":pos===3?"🥉":("#"+pos);
+    let score;
+    if(a.me) score=pts+" pts";
+    else { // flavor score that sits believably around Haneda
+      const base=Math.round(MAX_PTS*1.02 - (pos)*((MAX_PTS*1.02)/ (RIVALS.length+2)));
+      score=Math.max(40,base)+" pts";
+    }
+    row.innerHTML='<div class="pos">'+medal+'</div>'+
+      '<div class="ap"><span class="fl">'+a.fl+'</span><span class="nm">'+a.nm+(a.me?" — that's you!":"")+'</span><span class="cd">'+a.cd+'</span></div>'+
+      '<div class="sc">'+score+'</div>';
+    lb.appendChild(row);
+  });
+}
+
+/* ===================== TOAST & OVERLAY ===================== */
+let toastTimer=null;
+function showToast(t,pct,route){
+  document.getElementById("toastTitle").innerHTML=t.ico+" "+t.title;
+  document.getElementById("toastPts").textContent="+"+t.pts;
+  document.getElementById("toastSub").textContent=pct+"% of schedule complete · "+t.msg;
+  const rt=document.getElementById("toastRoute");
+  if(route){ rt.style.display="flex"; rt.innerHTML="🌏 New route opened: HND ✈ "+route.to+" — "+route.city+" "+route.fl; }
+  else rt.style.display="none";
+  const el=document.getElementById("toast"); el.classList.add("show");
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove("show"), route?5200:3800);
+}
+
+function showGameOver(){
+  const rank=worldRank(), pts=totalPoints();
+  const champ = rank===1;
+  const m=document.getElementById("modal");
+  const name=S.director?S.director.trim():"Director";
+  m.innerHTML=
+   '<div class="crown"><div class="ic">'+(champ?"🏆":"🎖️")+'</div>'+
+     '<h2>'+(champ?"HANEDA IS #1!":"SEASON COMPLETE")+'</h2>'+
+     '<div class="sub">'+(champ?"WORLD\u2019S BEST AIRPORT · JULY 2026":"FINAL WORLD RANK · #"+rank)+'</div></div>'+
+   '<div class="mbody">'+
+     '<div class="mstats">'+
+       '<div class="ms"><div class="v">#'+rank+'</div><div class="l">WORLD RANK</div></div>'+
+       '<div class="ms"><div class="v">'+pts+'</div><div class="l">POINTS</div></div>'+
+       '<div class="ms"><div class="v">31</div><div class="l">ROUTES</div></div>'+
+     '</div>'+
+     '<p>'+(champ
+        ? ("Incredible work, "+name+"! You logged all 31 days and flew Haneda straight to the top of the world — ahead of Changi, Doha and every other hub. Tokyo's gateway is officially the planet\u2019s #1 airport. ✈️")
+        : ("Brilliant season, "+name+"! You completed all 31 days and finished #"+rank+" in the world — an outstanding run. Reopen any day to sharpen your score and chase that #1 crown.") )+'</p>'+
+     '<div class="mbtns">'+
+       '<button class="btn btn-ghost" id="moClose">Keep flying</button>'+
+       '<button class="btn btn-primary" id="moNew">🛫 New season</button>'+
+     '</div>'+
+   '</div>';
+  document.getElementById("overlay").classList.add("show");
+  document.getElementById("moClose").onclick=()=>document.getElementById("overlay").classList.remove("show");
+  document.getElementById("moNew").onclick=()=>{ document.getElementById("overlay").classList.remove("show"); resetSeason(); };
+  S.gameOverSeen=true; persist();
+  if(champ) burstConfetti();
+}
+
+function burstConfetti(){
+  const c=document.getElementById("confetti"); c.innerHTML=""; c.classList.add("show");
+  const ic=["✈️","🎉","🟧","🟦","⭐","🟨","🛫"];
+  for(let i=0;i<70;i++){
+    const s=document.createElement("i");
+    s.textContent=ic[Math.floor(Math.random()*ic.length)];
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDuration=(2.6+Math.random()*2.4)+"s";
+    s.style.animationDelay=(Math.random()*0.8)+"s";
+    s.style.fontSize=(12+Math.random()*16)+"px";
+    c.appendChild(s);
+  }
+  setTimeout(()=>c.classList.remove("show"),5200);
+}
+
+/* ===================== RESET ===================== */
+function resetSeason(){
+  S=blankState(); persist(); renderAll();
+  // scroll to top, go to dash
+  switchTab("dash"); window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ===================== TABS ===================== */
+function switchTab(name){
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+name));
+}
+document.getElementById("tabsBar").addEventListener("click",e=>{
+  const t=e.target.closest(".tab"); if(!t) return; switchTab(t.dataset.tab);
+});
+document.getElementById("goPlan").onclick=()=>{ switchTab("ops"); window.scrollTo({top:120,behavior:"smooth"}); };
+
+/* director input */
+document.getElementById("dirInput").addEventListener("input",e=>{
+  S.director=e.target.value; persist();
+  const name=S.director.trim();
+  document.getElementById("welcomeLine").textContent = name ? ("Welcome aboard, "+name+".") : "Welcome aboard, Director.";
+});
+
+/* reset button */
+document.getElementById("resetBtn").onclick=()=>{
+  if(confirm("Start a brand-new season? This clears all of July's tasks and progress.")) resetSeason();
+};
+
+/* Local clock — uses the user's own device time & timezone (not JST) */
+function tzAbbr(){
+  try{
+    const parts=new Intl.DateTimeFormat(undefined,{timeZoneName:"short"}).formatToParts(new Date());
+    const z=parts.find(p=>p.type==="timeZoneName");
+    return z? z.value : "";
+  }catch(e){ return ""; }
+}
+const TZ=tzAbbr();
+function tickClock(){
+  const now=new Date();
+  const hh=String(now.getHours()).padStart(2,"0"),mm=String(now.getMinutes()).padStart(2,"0"),ss=String(now.getSeconds()).padStart(2,"0");
+  document.getElementById("jstClock").textContent=hh+":"+mm+":"+ss+(TZ?(" "+TZ):"");
+}
+setInterval(tickClock,1000); tickClock();
+
+/* ===================== BOOT ===================== */
+(async function init(){
+  const loaded=await Store.load();
+  S = loaded || blankState();
+  // migrate / safety
+  if(!S.days) S.days={};
+  // migrate old single-time tasks -> start/end range (dot format)
+  Object.values(S.days).forEach(day=>{
+    if(day && Array.isArray(day.tasks)) day.tasks.forEach(t=>{
+      if(t.start===undefined){ t.start = t.time ? normTime(t.time) : ""; }
+      if(t.end===undefined){ t.end = ""; }
+      delete t.time;
+    });
+  });
+  if(!S.selected || !/^\d{4}-07-\d{2}$/.test(S.selected)) S.selected=dk(1);
+  renderAll();
+})();
+</script>
+</body>
+</html>
