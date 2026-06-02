@@ -280,6 +280,15 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
 .score-table .pts{font-family:var(--mono);font-weight:800;color:var(--orange-d)}
 .video-frame{margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:#000;aspect-ratio:16/9}
 .video-frame iframe{width:100%;height:100%;border:0;display:block}
+.yt-facade{position:relative;display:block;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#000;overflow:hidden}
+.yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s, filter .25s}
+.yt-facade:hover .yt-thumb{transform:scale(1.04);filter:brightness(.82)}
+.yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:auto;display:flex;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45));transition:transform .18s}
+.yt-play svg{width:100%;height:auto;display:block}
+.yt-play .yt-pbg{fill:#1f1f1f;opacity:.86;transition:fill .18s,opacity .18s}
+.yt-facade:hover .yt-play{transform:translate(-50%,-50%) scale(1.08)}
+.yt-facade:hover .yt-play .yt-pbg{fill:#cc0000;opacity:1}
+.yt-facade:focus-visible{outline:3px solid var(--orange);outline-offset:-3px}
 .cap{font-size:12px;color:var(--muted);margin-top:7px;text-align:center}
 .media{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);background:#fff}
 .media img{width:100%}
@@ -468,9 +477,13 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
       <h3 class="h-md">🎥 Welcome to Haneda</h3>
       <p>New to the airport you're running? Here's the official Haneda guide to get you in the captain's seat:</p>
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/TCqTbsP7J7s" title="Haneda Airport Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        <button class="yt-facade" id="ytFacade" data-id="TCqTbsP7J7s" type="button" aria-label="Play the Haneda Airport guide video">
+          <img class="yt-thumb" src="https://i.ytimg.com/vi/TCqTbsP7J7s/hqdefault.jpg" alt="Haneda Airport Guide video thumbnail" loading="lazy"
+               onerror="this.style.display='none'">
+          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 68 48"><path class="yt-pbg" d="M66.5 7.7c-.8-2.9-3-5.1-5.9-5.9C55.4.5 34 .5 34 .5S12.6.5 7.4 1.8C4.5 2.6 2.3 4.8 1.5 7.7.2 13 .2 24 .2 24s0 11 1.3 16.3c.8 2.9 3 5.1 5.9 5.9C12.6 47.5 34 47.5 34 47.5s21.4 0 26.6-1.3c2.9-.8 5.1-3 5.9-5.9C67.8 35 67.8 24 67.8 24s0-11-1.3-16.3z"/><path d="M27 34l18-10L27 14v20z" fill="#fff"/></svg></span>
+        </button>
       </div>
-      <p class="cap">▶ “Haneda Airport Survival Guide” — transport, amenities & what to expect. (If it doesn't load, <a href="https://youtu.be/TCqTbsP7J7s" target="_blank" rel="noopener">open it on YouTube</a>.)</p>
+      <p class="cap">▶ “Haneda Airport Survival Guide” — transport, amenities & what to expect. Click to play it right here. (Or <a href="https://youtu.be/TCqTbsP7J7s" target="_blank" rel="noopener">open it on YouTube</a>.)</p>
 
       <h3 class="h-md">🗺️ Know your terminals</h3>
       <div class="media">
@@ -1032,6 +1045,22 @@ function tickClock(){
   document.getElementById("jstClock").textContent=hh+":"+mm+":"+ss+(TZ?(" "+TZ):"");
 }
 setInterval(tickClock,1000); tickClock();
+
+/* Click-to-play YouTube facade — reliable playback even when opened from file:// */
+(function(){
+  var f=document.getElementById("ytFacade");
+  if(!f) return;
+  f.addEventListener("click",function(){
+    var id=f.getAttribute("data-id"), parent=f.parentNode;
+    var ifr=document.createElement("iframe");
+    ifr.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0&playsinline=1";
+    ifr.title="Haneda Airport Guide";
+    ifr.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+    ifr.setAttribute("allowfullscreen","");
+    ifr.style.cssText="width:100%;height:100%;border:0;display:block";
+    parent.innerHTML=""; parent.appendChild(ifr);
+  });
+})();
 
 /* ===================== BOOT ===================== */
 (async function init(){
