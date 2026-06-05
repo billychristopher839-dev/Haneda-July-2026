@@ -368,7 +368,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
         </div>
       </div>
       <div class="board-stats">
-        <div class="stat"><div class="k">WORLD RANK</div><span class="flap" id="sRank">#19</span><div class="sub" id="sRankSub">of 30 hubs</div></div>
+        <div class="stat"><div class="k">WORLD RANK</div><span class="flap" id="sRank">#31</span><div class="sub" id="sRankSub">of 31 hubs</div></div>
         <div class="stat"><div class="k">SEASON POINTS</div><span class="flap" id="sPts">0</span><div class="sub">of 496 max</div></div>
         <div class="stat"><div class="k">ROUTES OPEN</div><span class="flap" id="sRoutes">0</span><div class="sub">of 31 city-pairs</div></div>
         <div class="stat"><div class="k">DAYS LOGGED</div><span class="flap" id="sDays">0</span><div class="sub">of 31 in July</div></div>
@@ -456,7 +456,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
         <li><b>1. Plan.</b> Go to <b>Daily Ops</b>, tap any day in July, and add your tasks. Set whatever time fits <i>your</i> day — early, late, or no time at all. Nothing is forced to a default.</li>
         <li><b>2. Fly.</b> As you finish each task in real life, tap its box to check it off. Watch your day fill up.</li>
         <li><b>3. Close out.</b> Hit <b>Close out the day</b> to lock in your score based on how much you completed.</li>
-        <li><b>4. Grow.</b> Each closed-out day opens a new Haneda route and nudges you up the world rankings. Finish all 31 days and Haneda is crowned #1! 🏆</li>
+        <li><b>4. Climb.</b> Haneda begins <b>dead last (#31 of 31 hubs)</b>. Every closed-out day opens a new route and lifts you up the world rankings — but only steady, consistent days will carry you to <b>#1</b>. 🏆</li>
       </ul>
 
       <h3 class="h-md">🎯 How scoring works</h3>
@@ -618,10 +618,13 @@ function loggedDays(){ return Object.values(S.days).filter(d=>d.logged).length; 
 function totalPoints(){ return Object.values(S.days).reduce((a,d)=>a+(d.logged?d.points:0),0); }
 function routesOpen(){ return Math.min(loggedDays(), 31); }
 function progressFrac(){ return totalPoints()/MAX_PTS; }
+const TOTAL_RANKS = RIVALS.length + 1; // Haneda + 30 rival hubs = 31 positions
 function worldRank(){
-  // climb from #19 (0 pts) to #1; reach #1 at ~70% of max points
-  const r = Math.round(19 - 18*Math.min(1, progressFrac()/0.7));
-  return Math.max(1, Math.min(19, r));
+  // Start dead last (#31, a brand-new contender) and climb to #1.
+  // #1 is earned through consistency — it needs ~85% of the season's maximum points.
+  const frac = Math.min(1, progressFrac()/0.85);
+  const r = Math.round(TOTAL_RANKS - (TOTAL_RANKS-1)*frac);
+  return Math.max(1, Math.min(TOTAL_RANKS, r));
 }
 function tierFor(pct){
   if(pct>=100) return {pts:16,key:"16",title:"PERFECT DEPARTURE",ico:"✦",rc:"rc16",
@@ -644,7 +647,7 @@ function renderAll(){ renderDash(); renderStrip(); renderDayPanel(); renderRoute
 function renderDash(){
   const rank=worldRank(), pts=totalPoints(), ro=routesOpen(), ld=loggedDays();
   document.getElementById("sRank").textContent="#"+rank;
-  document.getElementById("sRankSub").textContent = rank===1 ? "world's best ✦" : "of 30 hubs";
+  document.getElementById("sRankSub").textContent = rank===1 ? "world's best ✦" : "of 31 hubs";
   document.getElementById("sPts").textContent=pts;
   document.getElementById("sRoutes").textContent=ro;
   document.getElementById("sDays").textContent=ld;
@@ -658,7 +661,7 @@ function renderDash(){
   // brief status
   const left=DAYS_IN_MONTH-ld;
   let bs;
-  if(ld===0) bs="No days logged yet. Tap “Plan today's schedule” to begin your season — the board is waiting.";
+  if(ld===0) bs="Haneda starts dead last — #"+TOTAL_RANKS+" of "+TOTAL_RANKS+" hubs. Tap “Plan today's schedule” and begin the climb to #1. Consistency is everything.";
   else if(rank===1) bs="🏆 You're #1 in the world! "+left+" day(s) left to make it official.";
   else bs=ld+" day(s) logged · "+pts+" pts · currently #"+rank+" worldwide · "+left+" day(s) to the finish line.";
   document.getElementById("briefStatus").textContent=bs;
