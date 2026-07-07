@@ -328,6 +328,73 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
 @keyframes fall{to{transform:translateY(108vh) rotate(540deg);opacity:.9}}
 
 .foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:34px;font-family:var(--mono);letter-spacing:.04em}
+
+/* ===== sync button ===== */
+.btn-orange{background:linear-gradient(180deg,var(--orange-l),var(--orange));color:#fff;box-shadow:0 8px 18px -10px rgba(237,118,17,.9)}
+.btn-orange:hover{background:linear-gradient(180deg,var(--orange),var(--orange-d))}
+.btn-sync{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--ink2);border:1px solid var(--line2);border-radius:9px;padding:7px 11px;background:var(--card);transition:.15s}
+.btn-sync:hover{border-color:var(--sky);color:var(--sky)}
+.sync-dot{width:9px;height:9px;border-radius:50%;background:#c4ccd8;display:inline-block;flex:none}
+.sync-dot.off{background:#c4ccd8}
+.sync-dot.on{background:#33b579;box-shadow:0 0 0 3px rgba(51,181,121,.2)}
+.sync-dot.busy{background:var(--amber);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.4}}
+
+/* ===== overlays (cloud + game) ===== */
+.ov{position:fixed;inset:0;z-index:120;background:rgba(9,15,30,.62);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:18px}
+.ov.show{display:flex}
+.cloud-modal{background:var(--card);border-radius:18px;max-width:440px;width:100%;padding:24px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);max-height:88vh;overflow:auto}
+.cloud-modal h3{font-family:var(--display);font-size:22px;letter-spacing:.01em;margin-bottom:4px}
+.cloud-modal p{font-size:13.5px;color:var(--ink2);line-height:1.5;margin:8px 0}
+.cloud-modal .muted{color:var(--muted);font-size:12px}
+.cloud-modal textarea{width:100%;min-height:120px;border:1px solid var(--line2);border-radius:10px;padding:10px;font-family:var(--mono);font-size:11.5px;background:var(--paper2);color:var(--ink);resize:vertical}
+.cloud-modal ol{margin:8px 0 8px 18px;font-size:13px;color:var(--ink2);line-height:1.6}
+.cloud-modal ol a{color:var(--sky)}
+.cloud-row{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.cloud-row .btn{flex:1;min-width:120px}
+.g-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;font-weight:700;font-size:14.5px;padding:12px 14px;border-radius:11px;background:#fff;border:1px solid #dadce0;color:#3c4043;box-shadow:0 1px 2px rgba(0,0,0,.08);transition:.14s}
+.g-btn:hover{background:#f7f8f8;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.g-btn svg{width:18px;height:18px;flex:none}
+.acct{display:flex;align-items:center;gap:11px;background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-top:12px}
+.acct img{width:38px;height:38px;border-radius:50%;flex:none}
+.acct .who{font-weight:700;font-size:14px;color:var(--ink)}
+.acct .em{font-size:12px;color:var(--muted)}
+.cloud-close{position:relative;float:right;color:var(--muted);font-size:20px;margin:-8px -6px 0 0;line-height:1}
+.cloud-close:hover{color:var(--bad)}
+.status-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px;margin-top:10px}
+.status-pill.on{background:#e7f7ef;color:#1c8a56}
+.status-pill.off{background:#eef1f6;color:var(--muted)}
+.status-pill .d{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+/* ===== arcade ===== */
+.arcade-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+@media(min-width:720px){.arcade-grid{grid-template-columns:1fr 1fr 1fr}}
+.arcade-card{display:flex;gap:14px;background:var(--paper2);border:1px solid var(--line);border-radius:16px;padding:16px;transition:.16s}
+@media(min-width:720px){.arcade-card{flex-direction:column}}
+.arcade-card:hover{border-color:var(--orange);transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(237,118,17,.6)}
+.arcade-emoji{font-size:44px;line-height:1;flex:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.15))}
+.arcade-body h3{font-family:var(--display);font-size:19px;letter-spacing:.01em;margin-bottom:4px}
+.arcade-body p{font-size:12.8px;color:var(--ink2);line-height:1.45}
+.arcade-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.arcade-foot .hs{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.arcade-foot .hs b{color:var(--orange-d);font-size:14px}
+
+/* ===== game modal ===== */
+.game-modal{background:var(--navy);border-radius:18px;width:100%;max-width:380px;padding:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);color:#fff}
+.game-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.game-title{font-family:var(--display);font-size:20px;letter-spacing:.02em;color:#fff}
+.game-close{color:#9fb0d6;font-size:20px;width:30px;height:30px;border-radius:8px;transition:.14s}
+.game-close:hover{background:rgba(255,255,255,.1);color:#fff}
+.game-hud{display:flex;gap:8px;justify-content:space-between;font-family:var(--mono);font-size:13px;margin-bottom:9px;color:#cdd8f0}
+.game-hud b{color:#fff;font-size:15px}
+.game-stage{position:relative;border-radius:12px;overflow:hidden;background:#0a1226;aspect-ratio:340/460}
+#gameCanvas{display:block;width:100%;height:100%;touch-action:none}
+.game-cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;background:rgba(8,14,30,.86);color:#fff}
+.game-cover.hide{display:none}
+.game-cover h4{font-family:var(--display);font-size:24px;margin-bottom:8px;letter-spacing:.02em}
+.game-cover p{font-size:13.5px;color:#c3cfe8;line-height:1.5;margin-bottom:16px;max-width:260px}
+.game-cover .btn{min-width:150px}
+.game-note{font-size:11.5px;color:#9fb0d6;text-align:center;margin-top:9px;font-family:var(--mono);line-height:1.5}
 </style>
 </head>
 <body>
@@ -338,6 +405,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
     <div class="top-tag"><b>OPS CONTROL</b><span>ROAD TO #1 · JULY 2026</span></div>
     <div class="top-spacer"></div>
     <div class="jst" title="Your local time"><span class="dot"></span><span id="jstClock">--:--:--</span></div>
+    <button class="btn-sync" id="syncBtn" title="Cloud sync &amp; Google sign-in"><span id="syncDot" class="sync-dot off"></span><span id="syncLabel">Sync</span></button>
     <button class="btn-reset" id="resetBtn">↺ New Season</button>
   </div>
 </header>
@@ -348,6 +416,7 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
     <button class="tab" data-tab="ops"><span class="ico">📋</span>Daily Ops</button>
     <button class="tab" data-tab="routes"><span class="ico">🌏</span>Route Network</button>
     <button class="tab" data-tab="rank"><span class="ico">🏆</span>World Rankings</button>
+    <button class="tab" data-tab="arcade"><span class="ico">🎮</span>Tokyo Arcade</button>
     <button class="tab" data-tab="guide"><span class="ico">🎧</span>Crew Guide</button>
   </div>
 </nav>
@@ -444,7 +513,40 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
     </div>
   </section>
 
-  <!-- ===== GUIDE ===== -->
+  <!-- ===== TOKYO ARCADE ===== -->
+  <section class="view section-pad" id="view-arcade">
+    <div class="card card-pad">
+      <div class="eyebrow">Between-Shift Break Room</div>
+      <h2 class="h-lg">Tokyo Arcade 🎮</h2>
+      <p class="lead" style="margin-top:6px">Cleared a task? Reward yourself with a 30-second break. Three tiny games, all pure Tokyo — chase your high scores, then get back to the tower.</p>
+      <div class="arcade-grid">
+        <div class="arcade-card" data-game="shibuya">
+          <div class="arcade-emoji">🚦</div>
+          <div class="arcade-body">
+            <h3>Shibuya Scramble Dash</h3>
+            <p>Hold to walk, weave through the world's busiest crossing. How many times can you cross in 30 seconds?</p>
+            <div class="arcade-foot"><span class="hs">Best: <b id="hs-shibuya">0</b></span><button class="btn btn-orange play-game" data-game="shibuya">▶ Play</button></div>
+          </div>
+        </div>
+        <div class="arcade-card" data-game="sushi">
+          <div class="arcade-emoji">🍣</div>
+          <div class="arcade-body">
+            <h3>Kaiten-Zushi Rush</h3>
+            <p>Grab the sushi the customer ordered off the conveyor belt. Build a combo — miss and it resets!</p>
+            <div class="arcade-foot"><span class="hs">Best: <b id="hs-sushi">0</b></span><button class="btn btn-orange play-game" data-game="sushi">▶ Play</button></div>
+          </div>
+        </div>
+        <div class="arcade-card" data-game="shinkansen">
+          <div class="arcade-emoji">🚄</div>
+          <div class="arcade-body">
+            <h3>Shinkansen Teishi</h3>
+            <p>Japan's trains stop within centimetres. Brake the bullet train so its nose lands dead on the platform line.</p>
+            <div class="arcade-foot"><span class="hs">Best: <b id="hs-shinkansen">0</b></span><button class="btn btn-orange play-game" data-game="shinkansen">▶ Play</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="view section-pad guide" id="view-guide">
     <div class="card card-pad">
       <div class="eyebrow">Crew Guide · You've got this</div>
@@ -516,6 +618,22 @@ h1,h2,h3{margin:0;font-family:var(--disp);letter-spacing:.01em;color:var(--ink)}
 <!-- overlay -->
 <div id="overlay"><div class="modal" id="modal"></div></div>
 <div class="confetti" id="confetti"></div>
+
+<!-- cloud sync modal -->
+<div id="cloudOverlay" class="ov"><div class="cloud-modal" id="cloudModal"></div></div>
+
+<!-- minigame modal -->
+<div id="gameOverlay" class="ov"><div class="game-modal" id="gameModal">
+  <div class="game-top">
+    <div class="game-title" id="gameTitle">Game</div>
+    <button class="game-close" id="gameClose" title="Close">✕</button>
+  </div>
+  <div class="game-hud" id="gameHud"></div>
+  <div class="game-stage"><canvas id="gameCanvas" width="340" height="460"></canvas>
+    <div class="game-cover" id="gameCover"></div>
+  </div>
+  <div class="game-note" id="gameNote"></div>
+</div></div>
 
 <script>
 "use strict";
@@ -608,7 +726,7 @@ const SUGGESTIONS=["Morning runway inspection","Brief the ground crew","Review o
 
 /* ===================== STATE ===================== */
 let S = null;
-function blankState(){ return { v:1, director:"", days:{}, selected:dk(1), gameOverSeen:false }; }
+function blankState(){ return { v:1, director:"", days:{}, selected:dk(1), gameOverSeen:false, arcade:{shibuya:0,sushi:0,shinkansen:0}, updatedAt:Date.now() }; }
 function dk(d){ return YEAR+"-07-"+String(d).padStart(2,"0"); }
 function dayNum(key){ return parseInt(key.slice(-2),10); }
 function ensureDay(key){ if(!S.days[key]) S.days[key]={tasks:[],logged:false,pct:0,points:0}; return S.days[key]; }
@@ -639,7 +757,7 @@ function tierFor(pct){
 
 /* ===================== PERSIST ===================== */
 let saveTimer=null;
-function persist(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>Store.save(S),120); }
+function persist(){ if(S) S.updatedAt=Date.now(); clearTimeout(saveTimer); saveTimer=setTimeout(()=>{ Store.save(S); if(window.FB) FB.push(S); },120); }
 
 /* ===================== RENDER ===================== */
 function renderAll(){ renderDash(); renderStrip(); renderDayPanel(); renderRoutes(); renderRank(); }
@@ -1065,6 +1183,380 @@ setInterval(tickClock,1000); tickClock();
   });
 })();
 
+/* ===================== CLOUD SYNC (Firebase RTDB + Google sign-in) ===================== */
+/* Offline-first: localStorage is always primary. If a Firebase config is provided (pasted in
+   the Sync panel, or hard-coded below), the app can sign in with Google and mirror progress
+   to the Realtime Database so it follows you across devices. Google popup sign-in requires the
+   page to be served from localhost or a real https host (e.g. GitHub Pages) — it can't run from
+   a file:// page, though localStorage still works there. */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBgxzrc8Px7hemI5d4_sEb_fOQVzk4ZVIY",
+  authDomain: "haneda-9c536.firebaseapp.com",
+  projectId: "haneda-9c536",
+  storageBucket: "haneda-9c536.firebasestorage.app",
+  messagingSenderId: "836991407920",
+  appId: "1:836991407920:web:13d8892cabd7dbd7cddaf5",
+  measurementId: "G-EJKFS1HQW2"
+};     // optional: paste your config object here to hard-code it
+const FB_CFG_KEY = "haneda_fb_cfg_v1";
+const DB_PATH = "apps/haneda_ops_2026_07/users/";
+
+const FB = (function(){
+  let sdk=null, app=null, auth=null, db=null, provider=null, user=null, unsub=null, pushTimer=null, started=false;
+  function cfg(){
+    if(FIREBASE_CONFIG) return FIREBASE_CONFIG;
+    try{ return JSON.parse(localStorage.getItem(FB_CFG_KEY)||"null"); }catch(e){ return null; }
+  }
+  function hasCfg(){ const c=cfg(); return !!(c && c.apiKey && c.projectId); }
+  function saveCfg(obj){ localStorage.setItem(FB_CFG_KEY, JSON.stringify(obj)); }
+  function clearCfg(){ localStorage.removeItem(FB_CFG_KEY); }
+  async function loadSDK(){
+    if(sdk) return sdk;
+    const V="https://www.gstatic.com/firebasejs/10.12.2/";
+    const [a,b,c]=await Promise.all([
+      import(V+"firebase-app.js"), import(V+"firebase-auth.js"), import(V+"firebase-database.js")
+    ]);
+    sdk={...a,...b,...c}; return sdk;
+  }
+  async function init(){
+    if(started) return true;
+    if(!hasCfg()) return false;
+    const s=await loadSDK();
+    app=s.initializeApp(cfg());
+    auth=s.getAuth(app); db=s.getDatabase(app); provider=new s.GoogleAuthProvider();
+    started=true;
+    s.onAuthStateChanged(auth,(u)=>{ user=u; onAuth(u); });
+    return true;
+  }
+  function ref(){ return sdk.ref(db, DB_PATH+user.uid); }
+  function onAuth(u){
+    updateSyncUI();
+    if(cloudOpen) renderCloudModal();
+    if(!u) return;
+    // pull, merge by updatedAt, then subscribe for live updates
+    sdk.get(ref()).then(snap=>{
+      const remote=snap.exists()?snap.val():null;
+      if(remote && (remote.updatedAt||0) > (S.updatedAt||0)) adoptState(remote);
+      else push(S,true);
+      if(unsub) unsub();
+      unsub=sdk.onValue(ref(),(sn)=>{
+        const r=sn.exists()?sn.val():null;
+        if(r && (r.updatedAt||0) > (S.updatedAt||0)) adoptState(r);
+      });
+    }).catch(()=>{});
+  }
+  async function signIn(){
+    const ok=await init(); if(!ok) throw new Error("no-config");
+    await sdk.signInWithPopup(auth, provider);
+  }
+  async function signOutUser(){ if(auth&&sdk){ if(unsub){unsub();unsub=null;} await sdk.signOut(auth); } }
+  function push(state, now){
+    if(!started || !user || !sdk) return;
+    clearTimeout(pushTimer);
+    const doit=()=>{ try{ sdk.set(ref(), state); }catch(e){} };
+    if(now) doit(); else pushTimer=setTimeout(doit, 700);
+  }
+  return {
+    hasCfg, saveCfg, clearCfg, cfg, init, signIn, signOut:signOutUser, push,
+    get user(){ return user; }, get started(){ return started; }
+  };
+})();
+window.FB = FB;
+
+function adoptState(obj){
+  S = obj;
+  if(!S.days) S.days={};
+  if(!S.arcade) S.arcade={shibuya:0,sushi:0,shinkansen:0};
+  if(!S.updatedAt) S.updatedAt=Date.now();
+  Store.save(S);
+  renderAll(); renderArcade();
+}
+
+/* ---- sync status pill in the top bar ---- */
+function updateSyncUI(){
+  const dot=document.getElementById("syncDot"), lab=document.getElementById("syncLabel");
+  if(!dot) return;
+  if(FB.user){ dot.className="sync-dot on"; lab.textContent="Synced"; }
+  else if(FB.hasCfg()){ dot.className="sync-dot off"; lab.textContent="Sign in"; }
+  else { dot.className="sync-dot off"; lab.textContent="Sync"; }
+}
+
+/* ---- cloud modal ---- */
+let cloudOpen=false;
+function openCloud(){ cloudOpen=true; renderCloudModal(); document.getElementById("cloudOverlay").classList.add("show"); }
+function closeCloud(){ cloudOpen=false; document.getElementById("cloudOverlay").classList.remove("show"); }
+function renderCloudModal(){
+  const m=document.getElementById("cloudModal");
+  const isFile = location.protocol==="file:";
+  let html='<button class="cloud-close" id="cloudX">✕</button><h3>☁ Cloud Sync</h3>';
+  if(FB.user){
+    const u=FB.user;
+    html+='<p>Your July season is backed up to the cloud and syncs automatically across every device you sign in on.</p>';
+    html+='<div class="acct">'+(u.photoURL?'<img src="'+u.photoURL+'" alt="">':'<div class="arcade-emoji" style="font-size:34px">👤</div>')+
+      '<div><div class="who">'+escAttr(u.displayName||"Signed in")+'</div><div class="em">'+escAttr(u.email||"")+'</div></div></div>';
+    html+='<div class="status-pill on"><span class="d"></span>Live sync on</div>';
+    html+='<div class="cloud-row"><button class="btn btn-navy" id="cloudSignOut">Sign out</button></div>';
+  } else if(FB.hasCfg()){
+    html+='<p>Sign in with Google to back up your progress and sync it across devices. Your data lives in <b>your own</b> Firebase project.</p>';
+    if(isFile) html+='<p class="muted">⚠ You\u2019re opening this file directly (file://). Google sign-in needs the page served from <b>localhost</b> or a host like <b>GitHub Pages</b>. Your progress still saves locally here.</p>';
+    html+='<div class="cloud-row"><button class="g-btn" id="cloudGoogle">'+GOOGLE_SVG+'Sign in with Google</button></div>';
+    html+='<div class="cloud-row"><button class="btn btn-ghost" id="cloudForget" style="flex:1;border:1px solid var(--line2);background:var(--card);color:var(--muted)">Change Firebase config</button></div>';
+  } else {
+    html+='<p>Want your habits to follow you across phone & laptop? Connect a free Firebase project — it takes about 3 minutes.</p>';
+    html+='<ol><li>Go to <a href="https://console.firebase.google.com" target="_blank" rel="noopener">console.firebase.google.com</a> and create a project.</li>'+
+      '<li>Add a <b>Web app</b>, and enable <b>Authentication → Google</b> and <b>Realtime Database</b>.</li>'+
+      '<li>Copy the <code>firebaseConfig</code> object and paste it below.</li>'+
+      '<li>Add your site\u2019s domain (e.g. your GitHub Pages URL) under Authentication → Settings → Authorized domains.</li></ol>';
+    html+='<textarea id="cfgArea" placeholder=\'{\\n  "apiKey": "...",\\n  "authDomain": "...",\\n  "databaseURL": "...",\\n  "projectId": "...",\\n  "appId": "..."\\n}\'></textarea>';
+    html+='<div class="cloud-row"><button class="btn btn-primary" id="cfgSave">Save & connect</button></div>';
+  }
+  m.innerHTML=html;
+  const x=document.getElementById("cloudX"); if(x) x.onclick=closeCloud;
+  const g=document.getElementById("cloudGoogle");
+  if(g) g.onclick=async()=>{ g.disabled=true; g.textContent="Opening Google…"; try{ await FB.signIn(); }catch(e){ renderCloudModal(); alert("Sign-in couldn\u2019t start. If you opened the file directly, run it on localhost or GitHub Pages, and check your Firebase config & authorized domains."); } };
+  const so=document.getElementById("cloudSignOut"); if(so) so.onclick=async()=>{ await FB.signOut(); updateSyncUI(); renderCloudModal(); };
+  const save=document.getElementById("cfgSave");
+  if(save) save.onclick=async()=>{
+    const raw=(document.getElementById("cfgArea").value||"").trim();
+    let obj=null;
+    try{ obj=JSON.parse(raw); }catch(e){
+      // tolerate JS-object style (unquoted keys / trailing commas / const firebaseConfig = {...})
+      try{ const body=raw.replace(/^[^{]*\{/, "{").replace(/;?\s*$/,""); obj=Function('"use strict";return ('+body+')')(); }catch(e2){ obj=null; }
+    }
+    if(!obj || !obj.apiKey || !obj.projectId){ alert("That doesn\u2019t look like a valid Firebase config. Paste the whole firebaseConfig object."); return; }
+    FB.saveCfg(obj); updateSyncUI();
+    save.disabled=true; save.textContent="Connecting…";
+    try{ await FB.init(); }catch(e){}
+    renderCloudModal();
+  };
+  const forget=document.getElementById("cloudForget"); if(forget) forget.onclick=()=>{ if(confirm("Forget the saved Firebase config on this device?")){ FB.clearCfg(); updateSyncUI(); renderCloudModal(); } };
+}
+const GOOGLE_SVG='<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
+
+function initCloud(){
+  const b=document.getElementById("syncBtn"); if(b) b.onclick=openCloud;
+  document.getElementById("cloudOverlay").addEventListener("click",e=>{ if(e.target.id==="cloudOverlay") closeCloud(); });
+  updateSyncUI();
+  if(FB.hasCfg()) FB.init().catch(()=>{});   // restore prior Google session if any
+}
+
+/* ===================== TOKYO ARCADE ===================== */
+function renderArcade(){
+  if(!S||!S.arcade) return;
+  ["shibuya","sushi","shinkansen"].forEach(k=>{
+    const el=document.getElementById("hs-"+k); if(el) el.textContent=S.arcade[k]||0;
+  });
+}
+function setHigh(kind,score){
+  if(!S.arcade) S.arcade={shibuya:0,sushi:0,shinkansen:0};
+  if(score>(S.arcade[kind]||0)){ S.arcade[kind]=score; persist(); renderArcade(); return true; }
+  return false;
+}
+(function wireArcade(){
+  document.querySelectorAll(".play-game").forEach(b=>{
+    b.addEventListener("click",()=>openGame(b.getAttribute("data-game")));
+  });
+})();
+
+/* ---- game runner ---- */
+const GAMES={
+  shibuya:{title:"🚦 Shibuya Scramble Dash",
+    intro:"Hold anywhere to walk forward. Weave through the crowd and cross as many times as you can in 30 seconds. A bump costs you a moment.",
+    note:"Tip: let a gap open, then go. Release to stop dead."},
+  sushi:{title:"🍣 Kaiten-Zushi Rush",
+    intro:"Tap the plate that matches the customer\u2019s order as it rolls by. Chain correct grabs for a combo — a wrong tap resets it.",
+    note:"45 seconds. Watch the order at the top."},
+  shinkansen:{title:"🚄 Shinkansen Teishi",
+    intro:"The bullet train is coming in hot. Tap to brake so its nose stops exactly on the platform line. Five arrivals — precision is everything.",
+    note:"Japanese trains stop within centimetres. Can you?"}
+};
+let rafId=null, gameCtx=null, curGame=null, gameLoop=null, gameInput=null;
+function openGame(kind){
+  curGame=kind;
+  const g=GAMES[kind];
+  document.getElementById("gameTitle").textContent=g.title;
+  document.getElementById("gameNote").textContent=g.note;
+  document.getElementById("gameHud").innerHTML="";
+  const cover=document.getElementById("gameCover");
+  cover.className="game-cover";
+  cover.innerHTML='<h4>'+g.title.replace(/^\S+\s/,"")+'</h4><p>'+g.intro+'</p><button class="btn btn-primary" id="gameStart">▶ Start</button>';
+  document.getElementById("gameStart").onclick=()=>startGame(kind);
+  document.getElementById("gameOverlay").classList.add("show");
+}
+function closeGame(){ stopGame(); document.getElementById("gameOverlay").classList.remove("show"); }
+function stopGame(){
+  if(rafId) cancelAnimationFrame(rafId); rafId=null;
+  const c=document.getElementById("gameCanvas");
+  if(gameInput){ c.removeEventListener("pointerdown",gameInput.down); c.removeEventListener("pointerup",gameInput.up); c.removeEventListener("pointercancel",gameInput.up); }
+  gameInput=null; gameLoop=null;
+}
+function endGame(kind, score, resultHtml){
+  stopGame();
+  const isHigh=setHigh(kind, score);
+  const cover=document.getElementById("gameCover");
+  cover.className="game-cover";
+  cover.innerHTML='<h4>'+(isHigh?"🎉 New Best!":"Nice run")+'</h4><p>'+resultHtml+'<br><br>Best: <b>'+(S.arcade[kind]||0)+'</b></p>'+
+    '<button class="btn btn-primary" id="gameAgain">↻ Play again</button>';
+  document.getElementById("gameAgain").onclick=()=>startGame(kind);
+}
+function setupCanvas(){
+  const c=document.getElementById("gameCanvas");
+  const rect=c.getBoundingClientRect();
+  const dpr=window.devicePixelRatio||1;
+  const W=340,H=460;
+  c.width=Math.max(1,Math.round(rect.width*dpr));
+  c.height=Math.max(1,Math.round(rect.height*dpr));
+  const ctx=c.getContext("2d");
+  ctx.setTransform(c.width/W,0,0,c.height/H,0,0);
+  return {c,ctx,W,H,rect:()=>c.getBoundingClientRect()};
+}
+function startGame(kind){
+  document.getElementById("gameCover").className="game-cover hide";
+  const g=setupCanvas();
+  if(kind==="shibuya") runShibuya(g);
+  else if(kind==="sushi") runSushi(g);
+  else runShinkansen(g);
+}
+
+/* ---------- GAME 1: Shibuya Scramble ---------- */
+function runShibuya(g){
+  const {ctx,W,H}=g;
+  const hud=document.getElementById("gameHud");
+  let holding=false, py=430, px=W/2, crossings=0, tEnd=performance.now()+30000, flash=0, speed=1;
+  const lanes=[90,150,210,270,330,390];
+  const peds=[];
+  lanes.forEach((ly,i)=>{
+    const dir=i%2?1:-1, n=3;
+    for(let k=0;k<n;k++) peds.push({y:ly, x:(k*130+ (dir>0?0:60))%W, r:11, vx:dir*(0.7+Math.random()*0.6), dir});
+  });
+  const down=()=>holding=true, up=()=>holding=false;
+  const c=document.getElementById("gameCanvas");
+  c.addEventListener("pointerdown",down); c.addEventListener("pointerup",up); c.addEventListener("pointercancel",up);
+  gameInput={down,up};
+  function step(now){
+    const left=Math.max(0,(tEnd-now)/1000);
+    // update
+    if(holding) py-=1.7*speed;
+    peds.forEach(p=>{ p.x+=p.vx*speed*1.4; if(p.dir>0&&p.x>W+14) p.x=-14; if(p.dir<0&&p.x<-14) p.x=W+14; });
+    // collision
+    if(flash<=0){
+      for(const p of peds){ const dx=p.x-px, dy=p.y-py; if(dx*dx+dy*dy < (p.r+10)*(p.r+10)){ py=Math.min(430,py+46); flash=28; break; } }
+    } else flash--;
+    if(py<38){ crossings++; py=430; speed+=0.12; }
+    // draw
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle="#243154"; ctx.fillRect(0,0,W,H);
+    // crosswalk stripes
+    ctx.fillStyle="rgba(255,255,255,.10)";
+    for(let x=14;x<W-10;x+=34) ctx.fillRect(x,30,20,H-70);
+    ctx.fillStyle="rgba(255,255,255,.06)"; ctx.fillRect(0,24,W,4); ctx.fillRect(0,H-40,W,4);
+    // pedestrians
+    peds.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fillStyle="#ffd27a"; ctx.fill(); ctx.beginPath(); ctx.arc(p.x,p.y-3,4.5,0,7); ctx.fillStyle="#c98b3a"; ctx.fill(); });
+    // player
+    ctx.beginPath(); ctx.arc(px,py,10,0,7); ctx.fillStyle=flash>0?((flash>>2)&1?"#ff6b6b":"#fff"):"#2fe0a0"; ctx.fill();
+    ctx.lineWidth=2; ctx.strokeStyle="#0a1226"; ctx.stroke();
+    hud.innerHTML='<span>Crossings <b>'+crossings+'</b></span><span>⏱ <b>'+left.toFixed(1)+'s</b></span>';
+    if(left<=0){ endGame("shibuya", crossings*100, "You crossed <b>"+crossings+"</b> times — <b>"+(crossings*100)+"</b> pts."); return; }
+    rafId=requestAnimationFrame(step);
+  }
+  rafId=requestAnimationFrame(step);
+}
+
+/* ---------- GAME 2: Kaiten-Zushi Rush ---------- */
+function runSushi(g){
+  const {ctx,W,H}=g;
+  const hud=document.getElementById("gameHud");
+  const TYPES=["🍣","🍤","🍙","🍥","🍡","🥟"];
+  let score=0, combo=0, tEnd=performance.now()+45000, order=rnd(TYPES), plates=[], spawnAt=0, pops=[];
+  const beltY=H*0.52;
+  function rnd(a){ return a[Math.floor(Math.random()*a.length)]; }
+  const c=document.getElementById("gameCanvas");
+  function down(e){
+    const r=c.getBoundingClientRect(); const lx=(e.clientX-r.left)/r.width*W, ly=(e.clientY-r.top)/r.height*H;
+    let hit=null;
+    for(let i=plates.length-1;i>=0;i--){ const p=plates[i]; const dx=p.x-lx, dy=p.y-ly; if(dx*dx+dy*dy<26*26){ hit=p; break; } }
+    if(!hit) return;
+    if(hit.t===order){ combo++; score+=10+combo*2; pops.push({x:hit.x,y:hit.y,txt:"+"+(10+combo*2),life:40,good:1}); hit.dead=1; order=rnd(TYPES); }
+    else { combo=0; score=Math.max(0,score-4); pops.push({x:hit.x,y:hit.y,txt:"miss",life:36,good:0}); hit.dead=1; }
+  }
+  c.addEventListener("pointerdown",down); c.addEventListener("pointerup",function(){}); gameInput={down,up:function(){}};
+  function step(now){
+    const left=Math.max(0,(tEnd-now)/1000);
+    if(now>spawnAt){ spawnAt=now+ (620+Math.random()*360); plates.push({x:W+26,y:beltY,t:rnd(TYPES)}); }
+    plates.forEach(p=>p.x-=1.9); plates=plates.filter(p=>p.x>-30 && !p.dead);
+    // draw
+    ctx.clearRect(0,0,W,H); ctx.fillStyle="#101a33"; ctx.fillRect(0,0,W,H);
+    // belt
+    ctx.fillStyle="#2a3a63"; roundRect(ctx,0,beltY-34,W,68,0); ctx.fill();
+    ctx.fillStyle="rgba(255,255,255,.07)"; for(let x=(now/16)%40-40;x<W;x+=40) ctx.fillRect(x,beltY-34,18,68);
+    // plates
+    plates.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,22,0,7); ctx.fillStyle="#f4eee1"; ctx.fill(); ctx.strokeStyle="#c9bfa8"; ctx.lineWidth=2; ctx.stroke();
+      ctx.font="26px serif"; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(p.t,p.x,p.y+1); });
+    // pops
+    pops.forEach(o=>{ o.y-=0.7; o.life--; ctx.globalAlpha=Math.max(0,o.life/40); ctx.fillStyle=o.good?"#2fe0a0":"#ff7a7a"; ctx.font="bold 15px sans-serif"; ctx.fillText(o.txt,o.x,o.y-26); ctx.globalAlpha=1; });
+    pops=pops.filter(o=>o.life>0);
+    hud.innerHTML='<span>Order <b style="font-size:20px">'+order+'</b></span><span>Score <b>'+score+'</b></span><span>Combo <b>x'+combo+'</b></span><span>⏱ <b>'+left.toFixed(0)+'</b></span>';
+    if(left<=0){ endGame("sushi", score, "You served <b>"+score+"</b> pts of sushi. Itadakimasu!"); return; }
+    rafId=requestAnimationFrame(step);
+  }
+  rafId=requestAnimationFrame(step);
+}
+
+/* ---------- GAME 3: Shinkansen Teishi ---------- */
+function runShinkansen(g){
+  const {ctx,W,H}=g;
+  const hud=document.getElementById("gameHud");
+  const LINE=290, trackY=H*0.5;
+  let round=1, total=0, nose=-40, v=1.4+Math.random()*0.3, braking=false, resting=false, restUntil=0, lastResult="";
+  const c=document.getElementById("gameCanvas");
+  function down(){ if(!braking && !resting) braking=true; }
+  c.addEventListener("pointerdown",down); c.addEventListener("pointerup",function(){}); gameInput={down,up:function(){}};
+  function nextRound(scoreThis, label){
+    total+=scoreThis; lastResult=label; resting=true; restUntil=performance.now()+900;
+  }
+  function step(now){
+    // physics
+    if(resting){
+      if(now>restUntil){
+        resting=false; round++;
+        if(round>5){ endGame("shinkansen", total, "Final precision score: <b>"+total+"</b> across 5 arrivals."); return; }
+        nose=-40; v=1.4+round*0.35+Math.random()*0.3; braking=false;
+      }
+    } else {
+      if(braking){ v*=0.90; if(v<0.05){ v=0; const dist=Math.abs(nose-LINE); const sc=Math.max(0,Math.round(100-dist*3)); nextRound(sc, dist<3?"PERFECT stop!":dist<12?"Great — "+Math.round(dist)+"px off":Math.round(dist)+"px off the line"); } }
+      else { v+=0.006; }
+      nose+=v;
+      if(nose>W+30 && !resting){ nextRound(0,"Overshot the platform!"); }
+    }
+    // draw
+    ctx.clearRect(0,0,W,H); ctx.fillStyle="#0d1730"; ctx.fillRect(0,0,W,H);
+    // track
+    ctx.fillStyle="#23325a"; ctx.fillRect(0,trackY+16,W,10);
+    ctx.fillStyle="rgba(255,255,255,.08)"; for(let x=0;x<W;x+=26) ctx.fillRect(x,trackY+19,14,4);
+    // platform line
+    ctx.fillStyle="#f4b41a"; ctx.fillRect(LINE-2,trackY-34,4,74);
+    ctx.font="10px monospace"; ctx.fillStyle="#f4b41a"; ctx.textAlign="center"; ctx.fillText("STOP",LINE,trackY-40);
+    // train (nose at 'nose')
+    const len=76, x0=nose-len;
+    ctx.fillStyle="#dfe8ff"; roundRect(ctx,x0,trackY-16,len,30,8); ctx.fill();
+    ctx.fillStyle="#2f86c9"; roundRect(ctx,nose-22,trackY-16,22,30,8); ctx.fill();
+    ctx.font="20px serif"; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText("🚄",nose-len+18,trackY-1);
+    ctx.fillStyle="#93a4c9"; ctx.font="11px monospace"; ctx.textAlign="left";
+    ctx.fillText(lastResult, 12, 26);
+    hud.innerHTML='<span>Arrival <b>'+Math.min(round,5)+'/5</b></span><span>Score <b>'+total+'</b></span><span>'+(braking?"🛑 braking":resting?"—":"tap to brake")+'</span>';
+    rafId=requestAnimationFrame(step);
+  }
+  rafId=requestAnimationFrame(step);
+}
+
+/* small canvas helper */
+function roundRect(ctx,x,y,w,h,r){ if(r<0)r=0; ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+
+/* game modal wiring */
+document.getElementById("gameClose").onclick=closeGame;
+document.getElementById("gameOverlay").addEventListener("click",e=>{ if(e.target.id==="gameOverlay") closeGame(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeGame(); closeCloud(); } });
+
 /* ===================== BOOT ===================== */
 (async function init(){
   const loaded=await Store.load();
@@ -1080,7 +1572,11 @@ setInterval(tickClock,1000); tickClock();
     });
   });
   if(!S.selected || !/^\d{4}-07-\d{2}$/.test(S.selected)) S.selected=dk(1);
+  if(!S.arcade) S.arcade={shibuya:0,sushi:0,shinkansen:0};
+  if(!S.updatedAt) S.updatedAt=Date.now();
   renderAll();
+  renderArcade();
+  initCloud();
 })();
 </script>
 </body>
